@@ -1,0 +1,20 @@
+<div class="header">
+  <mat-sidenav-container class="sidebar-container">
+    <mat-sidenav #sidenav>
+      <mat-list role="list">
+        <div class="mat-list-item-content">
+          <div id="mat-list-home">
+            <button mat-button>
+              <mat-icon>mic</mat-icon>
+              <label>Startseite</label>
+            </button>
+          </div>
+        </div>
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
