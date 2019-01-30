@@ -8,8 +8,12 @@
       </mat-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    </mat-sidenav-content>
+    <div class="header-line"></div>
+    <div class="header-main">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+    </div>
   </mat-sidenav-container>
 </div>

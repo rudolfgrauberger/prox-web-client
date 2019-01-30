@@ -17,13 +17,8 @@
   padding-top: 8px;
 }
 
-.mat-list-item {
-  height: 56px;
-}
-
 :host /deep/ .mat-list-item-content {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 0 !important;
 }
 
 .sidebar-button {
@@ -38,4 +33,34 @@
 
 .sidebar-icon {
   padding-right: 20px;
+}
+
+.header-line {
+  background-color: #c81e0f;
+  height: 3px;
+}
+
+.header-main {
+  background-color: #F7F7F7;
+  height: 50px;
+  box-shadow: 0 1px 1px -5px rgba(0,0,0,.1),0 1px 2px 1px rgba(0,0,0,.02),0 1px 2px 1px rgba(0,0,0,.02);
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #d4d4d4;
+}
+
+.header-main span { // Not responsive!
+  position: absolute;
+  font-family: Lato;
+  font-size: 18px;
+  top: 18.5px;
+  left: 50%;
+  width: 212px;
+  transform: translateX(-50%);
+}
+
+.mat-icon-button {
+  color: gray;
+  margin-top: 4.5px;
+  margin-left: 15px;
 }
