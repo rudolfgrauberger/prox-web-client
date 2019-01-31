@@ -1,6 +1,6 @@
 <div class="header">
-  <mat-sidenav-container class="sidebar-container">
-    <mat-sidenav>
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav>
       <mat-list>
         <mat-list-item>
           <button routerLink="" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">home</mat-icon>Startseite</button>
@@ -14,12 +14,15 @@
       </mat-list>
     </mat-sidenav>
 
-    <div class="header-line"></div>
-    <div class="header-main">
-      <button mat-icon-button (click)="sidenav">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>{{title}}</span>
+    <div class="toolbar">
+      <div class="header-line"></div>
+      <div class="header-main">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{title}}</span>
+      </div>
     </div>
+    <router-outlet></router-outlet>
   </mat-sidenav-container>
 </div>
