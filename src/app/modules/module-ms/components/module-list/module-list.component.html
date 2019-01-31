@@ -1,5 +1,20 @@
 <div class="module-list">
-  <mat-list>
-    <h3 mat-subheader>Studiengänge und Module</h3>
-  </mat-list>
+  <h1>Module und Studiengänge</h1>
+  <mat-card *ngFor="let studyCourse of studyCourses">
+    <mat-card-header>
+      <mat-card-subtitle>Studiengang</mat-card-subtitle>
+      <mat-card-title>{{studyCourse.name}}</mat-card-title>
+      <mat-card-subtitle>Akademischer Grad</mat-card-subtitle>
+      <mat-card-title>{{studyCourse.academicDegree}}</mat-card-title>
+      <mat-card-subtitle>Module</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Modul Lorem Impsum
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button routerLink="/modules/{{studyCourse.name}}" mat-button>Details</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
