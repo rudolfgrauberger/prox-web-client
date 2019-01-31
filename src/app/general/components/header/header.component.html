@@ -1,6 +1,6 @@
 <div class="header">
   <mat-sidenav-container class="sidebar-container">
-    <mat-sidenav #sidenav>
+    <mat-sidenav>
       <mat-list>
         <mat-list-item>
           <button routerLink="" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">home</mat-icon>Startseite</button>
@@ -16,7 +16,7 @@
 
     <div class="header-line"></div>
     <div class="header-main">
-      <button mat-icon-button (click)="sidenav.toggle()">
+      <button mat-icon-button (click)="sidenav">
         <mat-icon>menu</mat-icon>
       </button>
       <span>{{title}}</span>

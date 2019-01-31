@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
+import {RestService} from 'angular4-hal';
+import {Module} from '../resources/Module';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ModuleService {
+@Injectable()
+export class ModuleService extends RestService<Module> {
 
-  constructor() { }
+  constructor(injector: Injector) {
+    super(Module, 'modules', injector);
+  }
 }

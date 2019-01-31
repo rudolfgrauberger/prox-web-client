@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularHalModule } from 'angular4-hal';
 
+import { ExternalConfigurationService } from './general/config/ExternalConfigurationService';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './general/app.component';
 import { ModuleListComponent } from './modules/module-ms/components/module-list/module-list.component';
 import { ModuleDetailComponent } from './modules/module-ms/components/module-detail/module-detail.component';
 import { HeaderComponent } from './general/components/header/header.component';
+import { HomeComponent } from './general/components/home/home.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
@@ -38,7 +41,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { HomeComponent } from './general/components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { HomeComponent } from './general/components/home/home.component';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    AngularHalModule.forRoot(),
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,
@@ -84,7 +87,9 @@ import { HomeComponent } from './general/components/home/home.component';
     MatSortModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: ModuleListComponent
   },
   {
-    path: 'modules/:id',
+    path: 'modules/:name',
     component: ModuleDetailComponent
   }
 ];
