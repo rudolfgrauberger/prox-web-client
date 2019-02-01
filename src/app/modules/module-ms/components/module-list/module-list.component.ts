@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StudyCourse} from '../../resources/StudyCourse';
 import {StudyCourseService} from '../../services/study-course.service';
+import {Module} from '../../resources/Module';
 
 @Component({
   selector: 'app-module-list',
@@ -10,6 +11,7 @@ import {StudyCourseService} from '../../services/study-course.service';
 export class ModuleListComponent implements OnInit {
 
   studyCourses: StudyCourse[];
+  modules: Module[];
 
   constructor(
     private studyCourseService: StudyCourseService) { }

@@ -3,13 +3,13 @@
     <mat-sidenav #sidenav>
       <mat-list>
         <mat-list-item>
-          <button routerLink="" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">home</mat-icon>Startseite</button>
+          <button routerLink="" (click)="sidenav.toggle()" routerLinkActive="nav-activated" [routerLinkActiveOptions]="{exact:true}" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">home</mat-icon>Startseite</button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">layers</mat-icon>Projekte</button>
+          <button routerLink="" (click)="sidenav.toggle()" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">layers</mat-icon>Projekte</button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="modules" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">local_library</mat-icon>Module</button>
+          <button routerLink="modules" (click)="sidenav.toggle()" routerLinkActive="nav-activated" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">local_library</mat-icon>Module</button>
         </mat-list-item>
       </mat-list>
     </mat-sidenav>
@@ -17,12 +17,12 @@
     <div class="toolbar">
       <div class="header-line"></div>
       <div class="header-main">
-        <button mat-icon-button (click)="sidenav.toggle()">
+        <button mat-icon-button (click)="sidenav.toggle()" class="no-hover">
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{title}}</span>
       </div>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet> <!-- Bug, fixen! -->
   </mat-sidenav-container>
 </div>

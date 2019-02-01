@@ -5,13 +5,14 @@
       <mat-card-subtitle>Studiengang</mat-card-subtitle>
       <mat-card-title>{{studyCourse.name}}</mat-card-title>
       <mat-card-subtitle>Akademischer Grad</mat-card-subtitle>
-      <mat-card-title>{{studyCourse.academicDegree}}</mat-card-title>
+      <mat-card-title>{{studyCourse.academicDegree.charAt(0).toUpperCase() + studyCourse.academicDegree.slice(1).toLowerCase()}}</mat-card-title>
       <mat-card-subtitle>Module</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-      <p>
-        Modul Lorem Impsum
-      </p>
+    <mat-card-content *ngFor="let module of studyCourse.getModuleArray() | slice:0:5; let i = index">
+      <ul>
+        <li>{{module.name}}</li>
+        <li *ngIf="i == 4">...</li>
+      </ul>
     </mat-card-content>
     <mat-card-actions>
       <button routerLink="/modules/{{studyCourse.name}}" mat-button>Details</button>

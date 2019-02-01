@@ -41,6 +41,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { FooterComponent } from './general/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ModuleListComponent,
     ModuleDetailComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,

@@ -5,9 +5,6 @@ import {Observable} from 'rxjs';
 export class StudyCourse extends Resource {
   name: string;
   academicDegree: string;
-  studyDirections: StudyCourse[];
-  modules: Module[];
-  parentStudyCourse: StudyCourse;
 
   getStudyDirections(): Observable<StudyCourse[]> {
     return this.getRelationArray(StudyCourse, 'studyDirections');
@@ -19,5 +16,13 @@ export class StudyCourse extends Resource {
 
   getParentStudyCourse(): Observable<StudyCourse> {
     return this.getRelation(StudyCourse, 'parentStudyCourse');
+  }
+
+  getModuleArray(): Module[] {
+    let modules: Module[];
+    this.getModules().subscribe(
+      tmp_modules => modules = tmp_modules
+    );
+    return modules;
   }
 }
