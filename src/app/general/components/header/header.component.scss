@@ -41,12 +41,12 @@
   border-color: #d4d4d4;
 }
 
-.header-main span { // Not responsive!
+.header-main span {
   position: absolute;
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   //top: 18px;
-  top: 16.5px;
+  top: 9px;
   left: 50%;
   width: 212px;
   transform: translateX(-50%);
@@ -70,4 +70,26 @@
 
 .nav-activated {
   background-color: rgba(230, 34, 17, 0.25);
+}
+
+.logo-responsive {
+  max-width: 110%;
+}
+
+.logo-responsive-icon {
+  max-width: 16%;
+  display: none;
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+@media (max-width: 330px) {
+  .logo-responsive {
+    display: none;
+  }
+
+  .logo-responsive-icon {
+    display: block;
+  }
 }
