@@ -46,6 +46,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lato-font": "^3.0.0",
     "protractor": "~5.4.0",
+    "terser": "^3.14.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
