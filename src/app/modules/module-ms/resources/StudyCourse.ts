@@ -1,10 +1,11 @@
-import {Resource, HalOptions} from 'angular4-hal';
+import {Resource} from 'angular4-hal';
 import {Module} from './Module';
 import {Observable} from 'rxjs';
 
 export class StudyCourse extends Resource {
   name: string;
   academicDegree: string;
+  modules: Module[];
 
   getStudyDirections(): Observable<StudyCourse[]> {
     return this.getRelationArray(StudyCourse, 'studyDirections');
@@ -29,9 +30,13 @@ export class StudyCourse extends Resource {
       tmp_modules => modules = tmp_modules
     );
     return modules.sort(
-      function(a, b) {
-        if (a.name < b.name) {return -1;}
-        if (a.name > b.name) {return 1;}
+      function (a, b) {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
         return 0;
       }
     );

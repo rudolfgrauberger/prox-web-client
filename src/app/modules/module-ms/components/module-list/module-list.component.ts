@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StudyCourse} from '../../resources/StudyCourse';
 import {StudyCourseService} from '../../services/study-course.service';
+import {HalOptions} from 'angular4-hal';
 import {Module} from '../../resources/Module';
-import { HalOptions } from 'angular4-hal';
 
 @Component({
   selector: 'app-module-list',
@@ -12,19 +12,25 @@ import { HalOptions } from 'angular4-hal';
 export class ModuleListComponent implements OnInit {
 
   studyCourses: StudyCourse[];
-  modules: Module[];
+
+  // modules: Module[];
 
   constructor(
-    private studyCourseService: StudyCourseService) { }
+    private studyCourseService: StudyCourseService) {
+  }
 
   ngOnInit() {
     this.getAllStudyCourses();
   }
 
   getAllStudyCourses() {
-    let options: HalOptions = {sort: [{path: 'name', order: 'ASC'}]};
-    this.studyCourseService.getAll(options).subscribe(
-      studyCourses => this.studyCourses = studyCourses
-    );
+    const options: HalOptions = {sort: [{path: 'name', order: 'ASC'}]};
+    this.studyCourseService.getAll(options).subscribe((studyCourses: StudyCourse[]) => {
+      this.studyCourses = studyCourses;
+    });
+    this.studyCourses.forEach((studyCourse: StudyCourse) => {
+      studyCourse.getModules().subscribe(
+        (modules: Module[]) => studyCourse.modules = modules);
+    });
   }
 }
