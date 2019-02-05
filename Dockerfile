@@ -19,6 +19,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
 RUN npm install
 RUN npm install -g @angular/cli@7.1.4 --unsafe
 
@@ -29,7 +30,7 @@ COPY . /usr/src/app
 #RUN ng test --watch=false
 
 # generate build
-RUN npm run build
+RUN ng build --prod
 
 ##################
 ### production ###
@@ -39,7 +40,10 @@ RUN npm run build
 FROM nginx:1.14.2-alpine
 
 # copy artifact build from the 'build environment'
-COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/ptb-web-client /usr/share/nginx/html
+
+# copy nginx conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # expose port 80
 EXPOSE 80
