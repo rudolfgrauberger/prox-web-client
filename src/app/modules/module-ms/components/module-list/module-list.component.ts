@@ -11,9 +11,7 @@ import {Module} from '../../resources/Module';
 })
 export class ModuleListComponent implements OnInit {
 
-  studyCourses: StudyCourse[];
-
-  // modules: Module[];
+  studyCourses: StudyCourse[] = [];
 
   constructor(
     private studyCourseService: StudyCourseService) {
