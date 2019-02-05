@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    //tools {
-        //nodejs "nodejs"
-    //}
     environment {
         REPOSITORY = "ptb.archi-lab.io"
         IMAGE = "web-client"
