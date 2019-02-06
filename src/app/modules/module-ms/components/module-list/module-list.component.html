@@ -1,5 +1,5 @@
 <div class="module-list">
-  <h1>Module und Studiengänge</h1>
+  <h1>Studiengänge</h1>
   <mat-card *ngFor="let studyCourse of studyCourses">
     <mat-card-header>
       <mat-card-subtitle>Studiengang</mat-card-subtitle>
@@ -7,16 +7,9 @@
       <mat-card-subtitle>Akademischer Grad</mat-card-subtitle>
       <mat-card-title>{{studyCourse.academicDegree.charAt(0).toUpperCase()
       + studyCourse.academicDegree.slice(1).toLowerCase()}}</mat-card-title>
-      <mat-card-subtitle>Module</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content *ngFor="let module of studyCourse.modules | slice:0:5; let i = index">
-      <ul>
-        <li>{{module.name}}</li>
-        <li *ngIf="i == 4">...</li>
-      </ul>
-    </mat-card-content>
     <mat-card-actions>
-      <button mat-button routerLink="/modules/{{studyCourse.name}}">Details</button>
+      <button mat-button routerLink="/studyCourses/{{studyCourse.name}}">Module</button>
     </mat-card-actions>
   </mat-card>
 </div>

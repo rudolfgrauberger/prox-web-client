@@ -26,10 +26,5 @@ export class ModuleListComponent implements OnInit {
     this.studyCourseService.getAll(options).subscribe((studyCourses: StudyCourse[]) => {
       this.studyCourses = studyCourses;
     });
-    this.studyCourses.forEach((studyCourse: StudyCourse) => {
-      studyCourse.getModules().subscribe((modules: Module[]) => {
-        studyCourse.modules = modules;
-      });
-    });
   }
 }

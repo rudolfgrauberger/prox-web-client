@@ -10,11 +10,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'modules',
+    path: 'studyCourses',
     component: ModuleListComponent
   },
   {
-    path: 'modules/:name',
+    path: 'studyCourses/:name',
     component: ModuleDetailComponent
   }
 ];
