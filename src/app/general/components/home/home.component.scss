@@ -6,11 +6,53 @@
 }
 
 .logo-responsive {
-  display: block;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
+  max-width: 500px;
 }
 
+.mat-card-header {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
 
+.mat-card-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+ul {
+  margin: 0.75em 0;
+  list-style: none;
+}
+
+li:before {
+  content: "";
+  border-color: transparent #b41208;
+  border-style: solid;
+  border-width: 0.35em 0 0.35em 0.45em;
+  display: block;
+  height: 0;
+  width: 0;
+  left: -1em;
+  top: 0.9em;
+  position: relative;
+}
+
+a {
+  color: #af1208;
+}
+
+@media (max-width: 640px) {
+  .logo-responsive {
+    max-width: 500px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mat-card-content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+}
