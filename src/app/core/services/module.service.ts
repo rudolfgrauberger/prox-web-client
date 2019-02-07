@@ -1,6 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {RestService} from 'angular4-hal';
-import {Module} from '../resources/Module';
+import {Module} from '../../shared/resources/Module';
 
 @Injectable()
 export class ModuleService extends RestService<Module> {

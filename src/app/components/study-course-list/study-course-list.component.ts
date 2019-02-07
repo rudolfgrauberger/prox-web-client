@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {StudyCourse} from '../../resources/StudyCourse';
-import {StudyCourseService} from '../../services/study-course.service';
+import {StudyCourse} from '../../shared/resources/StudyCourse';
+import {StudyCourseService} from '../../core/services/study-course.service';
 import {HalOptions} from 'angular4-hal';
-import {Module} from '../../resources/Module';
 
 @Component({
   selector: 'app-module-list',
-  templateUrl: './module-list.component.html',
-  styleUrls: ['./module-list.component.scss']
+  templateUrl: './study-course-list.component.html',
+  styleUrls: ['./study-course-list.component.scss']
 })
-export class ModuleListComponent implements OnInit {
+export class StudyCourseListComponent implements OnInit {
 
   studyCourses: StudyCourse[] = [];
 

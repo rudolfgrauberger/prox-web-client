@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './general/components/home/home.component';
-import { ModuleListComponent } from './modules/module-ms/components/module-list/module-list.component';
-import { ModuleDetailComponent } from './modules/module-ms/components/module-detail/module-detail.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from './components/home/home.component';
+import {StudyCourseListComponent} from './components/study-course-list/study-course-list.component';
+import {StudyCourseDetailsComponent} from './components/study-course-details/study-course-details.component';
 
 const routes: Routes = [
   {
@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'studyCourses',
-    component: ModuleListComponent
+    component: StudyCourseListComponent
   },
   {
     path: 'studyCourses/:name',
-    component: ModuleDetailComponent
+    component: StudyCourseDetailsComponent
   }
 ];
 
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

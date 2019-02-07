@@ -1,18 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AngularHalModule } from 'angular4-hal';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AngularHalModule} from 'angular4-hal';
 
-import { ExternalConfigurationService } from './general/config/ExternalConfigurationService';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './general/app.component';
-import { ModuleListComponent } from './modules/module-ms/components/module-list/module-list.component';
-import { ModuleDetailComponent } from './modules/module-ms/components/module-detail/module-detail.component';
-import { HeaderComponent } from './general/components/header/header.component';
-import { HomeComponent } from './general/components/home/home.component';
+import {ExternalConfigurationService} from './core/services/external-configuration.service';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {StudyCourseListComponent} from './components/study-course-list/study-course-list.component';
+import {StudyCourseDetailsComponent} from './components/study-course-details/study-course-details.component';
+import {HeaderComponent} from './core/header/header.component';
+import {HomeComponent} from './components/home/home.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCheckboxModule} from '@angular/material';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -41,13 +40,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { FooterComponent } from './general/components/footer/footer.component';
+import {FooterComponent} from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModuleListComponent,
-    ModuleDetailComponent,
+    StudyCourseListComponent,
+    StudyCourseDetailsComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent
@@ -94,4 +93,5 @@ import { FooterComponent } from './general/components/footer/footer.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

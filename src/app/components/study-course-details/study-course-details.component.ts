@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {StudyCourse} from '../../resources/StudyCourse';
-import {StudyCourseService} from '../../services/study-course.service';
+import {StudyCourse} from '../../shared/resources/StudyCourse';
+import {StudyCourseService} from '../../core/services/study-course.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-module-detail',
-  templateUrl: './module-detail.component.html',
-  styleUrls: ['./module-detail.component.scss']
+  templateUrl: './study-course-details.component.html',
+  styleUrls: ['./study-course-details.component.scss']
 })
-export class ModuleDetailComponent implements OnInit {
+export class StudyCourseDetailsComponent implements OnInit {
   studyCourse: StudyCourse;
   studyCourseName: string;
 
@@ -23,7 +23,7 @@ export class ModuleDetailComponent implements OnInit {
   private getStudyCourse() {
     this.studyCourseService.getAll().subscribe(
       studyCourses => {
-        for(let tmpStudyCourse of studyCourses) {
+        for (let tmpStudyCourse of studyCourses) {
           if (tmpStudyCourse.name === this.studyCourseName) {
             this.studyCourse = tmpStudyCourse;
           }
