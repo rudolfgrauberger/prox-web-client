@@ -4,13 +4,24 @@
       <img class="logo-sidebar" src="assets/images/logo-icon.png">
       <mat-list>
         <mat-list-item>
-          <button routerLink="" (click)="sidenav.toggle()" routerLinkActive="nav-activated" [routerLinkActiveOptions]="{exact:true}" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">home</mat-icon>Startseite</button>
+          <button (click)="sidenav.toggle()" [routerLinkActiveOptions]="{exact:true}" class="sidebar-button"
+                  mat-button routerLink="" routerLinkActive="nav-activated">
+            <mat-icon class="sidebar-icon">home</mat-icon>
+            Startseite
+          </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="" (click)="sidenav.toggle()" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">layers</mat-icon>Projekte</button>
+          <button (click)="sidenav.toggle()" class="sidebar-button" mat-button routerLink="">
+            <mat-icon class="sidebar-icon">layers</mat-icon>
+            Projekte
+          </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="studyCourses" (click)="sidenav.toggle()" routerLinkActive="nav-activated" class="sidebar-button" mat-button><mat-icon class="sidebar-icon">local_library</mat-icon>Studiengänge</button>
+          <button (click)="sidenav.toggle()" class="sidebar-button"
+                  mat-button routerLink="study-courses" routerLinkActive="nav-activated">
+            <mat-icon class="sidebar-icon">local_library</mat-icon>
+            Studiengänge
+          </button>
         </mat-list-item>
       </mat-list>
     </mat-sidenav>
@@ -18,7 +29,7 @@
     <div class="toolbar">
       <div class="header-line"></div>
       <div class="header-main">
-        <button mat-icon-button (click)="sidenav.toggle()" class="no-hover">
+        <button (click)="sidenav.toggle()" class="no-hover" mat-icon-button>
           <mat-icon>menu</mat-icon>
         </button>
         <span>

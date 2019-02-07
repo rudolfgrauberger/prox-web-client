@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StudyCourse} from '../../shared/hal-resources/StudyCourse';
+import {StudyCourse} from '../../shared/hal-resources/study-course.resource';
 import {StudyCourseService} from '../../core/services/study-course.service';
 import {ActivatedRoute} from '@angular/router';
 

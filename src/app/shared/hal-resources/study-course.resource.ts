@@ -1,5 +1,5 @@
 import {Resource} from 'angular4-hal';
-import {Module} from './Module';
+import {Module} from './module.resource';
 import {Observable} from 'rxjs';
 
 export class StudyCourse extends Resource {

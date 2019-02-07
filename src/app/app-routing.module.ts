@@ -10,11 +10,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'studyCourses',
+    path: 'study-courses',
     component: StudyCourseListComponent
   },
   {
-    path: 'studyCourses/:name',
+    path: 'study-courses/:name',
     component: StudyCourseDetailsComponent
   }
 ];
