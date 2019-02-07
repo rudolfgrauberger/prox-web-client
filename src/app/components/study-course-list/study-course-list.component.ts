@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StudyCourse} from '../../shared/resources/StudyCourse';
+import {StudyCourse} from '../../shared/hal-resources/StudyCourse';
 import {StudyCourseService} from '../../core/services/study-course.service';
 import {HalOptions} from 'angular4-hal';
 
