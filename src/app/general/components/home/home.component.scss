@@ -7,6 +7,7 @@
 
 .logo-responsive {
   max-width: 500px;
+  max-height: 84px;
 }
 
 .mat-card-header {
@@ -42,10 +43,22 @@ a {
   color: #af1208;
 }
 
+
+.logo-responsive-icon {
+  max-width: 500px;
+  max-height: 84px;
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 640px) {
   .logo-responsive {
-    max-width: 500px;
-    margin-right: 20px;
+    display: none;
+  }
+
+  .logo-responsive-icon {
+    display: block;
   }
 }
 
@@ -56,3 +69,4 @@ a {
     padding-bottom: 20px;
   }
 }
+
