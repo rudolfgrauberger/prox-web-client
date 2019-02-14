@@ -3,11 +3,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {StudyCourseListComponent} from './components/study-course-list/study-course-list.component';
 import {StudyCourseDetailsComponent} from './components/study-course-details/study-course-details.component';
+import {ProjectListComponent} from './components/project-list/project-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'projects',
+    component: ProjectListComponent
   },
   {
     path: 'study-courses',

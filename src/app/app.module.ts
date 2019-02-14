@@ -41,6 +41,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FooterComponent} from './core/footer/footer.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {FooterComponent} from './core/footer/footer.component';
     StudyCourseDetailsComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ProjectListComponent
   ],
   imports: [
     AppRoutingModule,
