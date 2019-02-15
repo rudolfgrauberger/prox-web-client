@@ -2,8 +2,10 @@
   <div class="project-list-header">
     <h1>Projekte</h1>
     <mat-form-field>
-      <mat-select placeholder="Status">
+      <mat-select placeholder="Status" (selectionChange)="filterProjectsByStatus($event)">
         <mat-option>Alle</mat-option>
+        <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(0).toUpperCase()
+        + status.slice(1).toLowerCase()}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
