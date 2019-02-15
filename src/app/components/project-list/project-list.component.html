@@ -1,5 +1,29 @@
 <div class="project-list">
-  <p>
-    project-list works!
-  </p>
+  <div class="project-list-header">
+    <h1>Projekte</h1>
+    <mat-form-field>
+      <mat-select placeholder="Status">
+        <mat-option>Alle</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-card *ngFor="let project of projects">
+    <mat-card-header>
+      <mat-card-subtitle>Bezeichnung</mat-card-subtitle>
+      <mat-card-title>{{project.name}}</mat-card-title>
+      <mat-card-subtitle>Status</mat-card-subtitle>
+      <mat-card-title>
+        <div
+          class="status"
+          [class.abgeschlossen]="project.status==='ABGESCHLOSSEN'"
+          [class.geplant]="project.status==='GEPLANT'"
+        >
+          {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button routerLink="/projects/{{project.name}}">Details</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
