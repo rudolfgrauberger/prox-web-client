@@ -1,13 +1,18 @@
 <div class="project-list">
   <div class="project-list-header">
     <h1>Projekte</h1>
-    <mat-form-field>
-      <mat-select placeholder="Status" (selectionChange)="filterProjectsByStatus($event)">
-        <mat-option>Alle</mat-option>
-        <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(0).toUpperCase()
-        + status.slice(1).toLowerCase()}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="project-options">
+      <mat-form-field>
+        <mat-select placeholder="Status" (selectionChange)="filterProjectsByStatus($event)">
+          <mat-option>Alle</mat-option>
+          <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(0).toUpperCase()
+          + status.slice(1).toLowerCase()}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
   <mat-card *ngFor="let project of projects">
     <mat-card-header>
