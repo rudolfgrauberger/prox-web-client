@@ -9,6 +9,10 @@ import {StudyCourseListComponent} from './components/study-course-list/study-cou
 import {StudyCourseDetailsComponent} from './components/study-course-details/study-course-details.component';
 import {HeaderComponent} from './core/header/header.component';
 import {HomeComponent} from './components/home/home.component';
+import {FooterComponent} from './core/footer/footer.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
+import { ProjectDialogComponent } from './components/project-dialog/project-dialog.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
@@ -40,9 +44,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {FooterComponent} from './core/footer/footer.component';
-import { ProjectListComponent } from './components/project-list/project-list.component';
-import { ProjectDetailsComponent } from './components/project-details/project-details.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,11 +55,14 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
     HomeComponent,
     FooterComponent,
     ProjectListComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ProjectDialogComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularHalModule.forRoot(),
     BrowserAnimationsModule,
     MatCheckboxModule,
@@ -91,6 +96,9 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
     MatTableModule,
     MatSortModule,
     MatPaginatorModule
+  ],
+  entryComponents: [
+    ProjectDialogComponent
   ],
   providers: [
     {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService}

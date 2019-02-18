@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
+import {Project} from '../../shared/hal-resources/project.resource';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-project-dialog',
@@ -9,20 +12,34 @@ import {ProjectService} from '../../core/services/project.service';
   styleUrls: ['./project-dialog.component.css']
 })
 export class ProjectDialogComponent implements OnInit {
-  nameFormControl = new FormControl('', [Validators.required]);
-  descriptionFormControl = new FormControl('', [Validators.required]);
-  statusFormControl = new FormControl('', [Validators.required]);
+  projectFormControl: FormGroup;
+
+  private name: string;
+  private description: string;
+  private status: string;
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService,
+              private formBuilder: FormBuilder,
+              private location: Location,
+              private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.projectFormControl = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      status: ['', [Validators.required]]
+    });
+  }
 
   onClose() {
     this.projectDialogRef.close();
   }
 
-  onSubmit() {
-    this.projectDialogRef.close();
+  onSubmit(project: Project) {
+    this.projectService.create(project).subscribe(
+      data => window.location.reload(),
+      error => console.log(error)
+    );
   }
 }
