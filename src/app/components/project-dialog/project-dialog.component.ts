@@ -3,8 +3,6 @@ import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-project-dialog',
@@ -14,15 +12,9 @@ import {Router} from '@angular/router';
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
 
-  private name: string;
-  private description: string;
-  private status: string;
-
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
-              private formBuilder: FormBuilder,
-              private location: Location,
-              private router: Router) {}
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.projectFormControl = this.formBuilder.group({

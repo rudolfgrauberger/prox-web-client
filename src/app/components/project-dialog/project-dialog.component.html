@@ -4,19 +4,19 @@
         (ngSubmit)="onSubmit(projectFormControl.value)" class="row">
     <div class="project-dialog-form">
       <mat-form-field>
-        <input matInput [(ngModel)]="name" placeholder="Bezeichnung" [formControl]="projectFormControl.controls.name" required>
+        <input matInput placeholder="Bezeichnung" [formControl]="projectFormControl.controls.name" required>
         <mat-error *ngIf="projectFormControl.controls.name.hasError('required')">
           Bezeichnung <strong>fehlt</strong>!
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput [(ngModel)]="description" placeholder="Beschreibung" [formControl]="projectFormControl.controls.description" class="form-textarea" required></textarea>
+        <textarea matInput placeholder="Beschreibung" [formControl]="projectFormControl.controls.description" class="form-textarea" required></textarea>
         <mat-error *ngIf="projectFormControl.controls.description.hasError('required')">
           Beschreibung <strong>fehlt</strong>!
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-select [(ngModel)]="status" placeholder="Status" [formControl]="projectFormControl.controls.status" required>
+        <mat-select placeholder="Status" [formControl]="projectFormControl.controls.status" required>
           <!-- The following options should be implemented either as enums or imported from backend -->
           <mat-option value="GEPLANT">Geplant</mat-option>
           <mat-option value="LAUFEND">Laufend</mat-option>
