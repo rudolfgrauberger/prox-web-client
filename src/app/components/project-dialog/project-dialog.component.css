@@ -1,0 +1,51 @@
+.project-dialog-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-title {
+  color: #b41208;
+}
+
+.mat-button {
+  color: #9c1e75;
+  font-size: 15px;
+}
+
+.project-dialog-form > * {
+  width: 400px;
+}
+
+.mat-dialog-actions {
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .project-dialog-form > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 325px) {
+  .mat-dialog-actions {
+    display: inline;
+  }
+
+  .mat-button {
+    padding: 0px 10px 0px 10px;
+    font-size: 14px;
+  }
+}
+
+.mat-error {
+  margin-bottom: 15px;
+}
+
+.mat-form-field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  font-size: 14px;
+}

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
-import {MatSelectChange} from '@angular/material';
+import {MatDialog, MatSelectChange} from '@angular/material';
 import {StudyCourse} from '../../shared/hal-resources/study-course.resource';
+import {ProjectDialogComponent} from '../project-dialog/project-dialog.component';
 
 @Component({
   selector: 'app-project-list',
@@ -13,7 +14,8 @@ export class ProjectListComponent implements OnInit {
   projects: Project[] = [];
   allStatus: string[] = [];
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllProjects();
@@ -36,6 +38,12 @@ export class ProjectListComponent implements OnInit {
     } else {
       this.getAllProjects();
     }
+  }
+
+  openProjectDialog() {
+    const projectDialogRef = this.dialog.open(ProjectDialogComponent, {
+      autoFocus: false
+    });
   }
 
   private fillStatus(projects: Project[]) {

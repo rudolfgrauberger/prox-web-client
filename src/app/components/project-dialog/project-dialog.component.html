@@ -1,0 +1,37 @@
+<div class="project-dialog">
+  <h1 mat-dialog-title>Projekt hinzufügen</h1>
+  <div class="project-dialog-form">
+    <mat-form-field>
+      <input matInput placeholder="Bezeichnung" [formControl]="nameFormControl" required>
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Bezeichnung <strong>fehlt</strong>!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Beschreibung" [formControl]="descriptionFormControl" class="form-textarea" required></textarea>
+      <mat-error *ngIf="descriptionFormControl.hasError('required')">
+        Beschreibung <strong>fehlt</strong>!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Status" [formControl]="statusFormControl" required>
+        <!-- The following options should be implemented either as enums or imported from backend -->
+        <mat-option value="geplant">Geplant</mat-option>
+        <mat-option value="laufend">Laufend</mat-option>
+        <mat-option value="abgeschlossen">Abgeschlossen</mat-option>
+      </mat-select>
+      <mat-error *ngIf="statusFormControl.hasError('required')">
+        Status <strong>fehlt</strong>!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <div class="action-buttons">
+      <button mat-button (click)="onClose()">Abbrechen</button>
+      <button mat-button [disabled]="nameFormControl.hasError('required') ||
+                                     descriptionFormControl.hasError('required') ||
+                                     statusFormControl.hasError('required')"
+                                     (click)="onSubmit()">Hinzufügen</button>
+    </div>
+  </div>
+</div>

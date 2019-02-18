@@ -147,6 +147,10 @@ li:before {
   margin-top: 10px;
 }
 
+.mat-icon-button.no-hover ::ng-deep .mat-button-focus-overlay {
+  background: none;
+}
+
 @media (max-width: 315px) {
   .project-options {
     width: 104%;
