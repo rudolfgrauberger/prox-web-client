@@ -9,6 +9,9 @@
           + status.slice(1).toLowerCase()}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Search" (keyup)="filterProjectsByName($event)">
+      </mat-form-field>
       <button (click)="openProjectDialog()" class="no-hover" mat-icon-button>
         <mat-icon>add</mat-icon>
       </button>

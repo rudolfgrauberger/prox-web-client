@@ -36,9 +36,15 @@ export class ProjectListComponent implements OnInit {
         projects => this.projects = projects
       );
     } else {
+      console.log(status);
       this.getAllProjects();
     }
   }
+
+  filterProjectsByName(event: any) {
+
+  }
+
 
   openProjectDialog() {
     const projectDialogRef = this.dialog.open(ProjectDialogComponent, {
