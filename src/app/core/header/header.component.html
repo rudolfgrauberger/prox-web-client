@@ -1,6 +1,9 @@
 <div class="header">
   <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav>
+      <button (click)="sidenav.toggle()" class="no-hover in-sidebar" mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
       <img class="logo-sidebar" src="assets/images/logo-icon.png">
       <mat-list>
         <mat-list-item>
@@ -34,8 +37,8 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span>
-          <img class="logo-responsive" src="assets/images/logo.png">
-          <img class="logo-responsive-icon" src="assets/images/logo-icon.png">
+          <img routerLink="" class="logo-responsive" src="assets/images/logo.png">
+          <img routerLink="" class="logo-responsive-icon" src="assets/images/logo-icon.png">
         </span>
       </div>
     </div>
