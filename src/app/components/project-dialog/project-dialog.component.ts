@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
@@ -14,7 +14,8 @@ export class ProjectDialogComponent implements OnInit {
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private snack: MatSnackBar) {}
 
   ngOnInit() {
     this.projectFormControl = this.formBuilder.group({
@@ -30,8 +31,13 @@ export class ProjectDialogComponent implements OnInit {
 
   onSubmit(project: Project) {
     this.projectService.create(project).subscribe(
-      data => window.location.reload(),
-      error => console.log(error)
+      data => {
+        this.snack.open(project.name + ' wurde erfolgreich erstellt', null, {
+          duration: 2000,
+        });
+        setTimeout(() => window.location.reload(), 2000);
+      },
+      error => console.log(error),
     );
   }
 }
