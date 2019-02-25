@@ -8,6 +8,9 @@
         + academicDegree.slice(1).toLowerCase()}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Suche" (keyup)="filterStudyCoursesByName($event)">
+    </mat-form-field>
   </div>
   <mat-card *ngFor="let studyCourse of studyCourses">
     <mat-card-header>

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
 import {MatDialog, MatSelectChange} from '@angular/material';
-import {StudyCourse} from '../../shared/hal-resources/study-course.resource';
 import {ProjectDialogComponent} from '../project-dialog/project-dialog.component';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -12,7 +12,10 @@ import {ProjectDialogComponent} from '../project-dialog/project-dialog.component
 })
 export class ProjectListComponent implements OnInit {
   projects: Project[] = [];
+  filteredProjects: Project[] = [];
   allStatus: string[] = [];
+  selectedStatus: string;
+  selectedName: string;
 
   constructor(private projectService: ProjectService,
               public dialog: MatDialog) { }
@@ -29,25 +32,60 @@ export class ProjectListComponent implements OnInit {
     );
   }
 
+  statusFilter(status: string) {
+    this.projectService.findByStatus(status).subscribe(
+      projects => this.projects = projects
+    );
+  }
+
+  nameFilter(name: string) {
+    if (this.selectedStatus) {
+      this.projectService.findByStatus(this.selectedStatus).subscribe(
+        projects => this.filterProjects(projects, name)
+      );
+    } else {
+      this.projectService.getAll().subscribe(
+        projects => this.filterProjects(projects, name)
+      );
+    }
+  }
+
   filterProjectsByStatus(event: MatSelectChange) {
     const status = event.value;
     if (status) {
-      this.projectService.findByStatus(status).subscribe(
-        projects => this.projects = projects
-      );
+      this.selectedStatus = status;
+      if (this.selectedName) {
+        this.nameFilter(this.selectedName);
+      } else {
+        this.statusFilter(status);
+      }
     } else {
-      console.log(status);
-      this.getAllProjects();
+      this.selectedStatus = null;
+      if (this.selectedName) {
+        this.nameFilter(this.selectedName);
+      } else {
+        this.getAllProjects();
+      }
     }
   }
 
   filterProjectsByName(event: any) {
-
+    const name = event.target.value;
+    if (name) {
+      this.selectedName = name;
+      this.nameFilter(name);
+    } else {
+      this.selectedName = null;
+      if (this.selectedStatus) {
+        this.statusFilter(this.selectedStatus);
+      } else {
+        this.getAllProjects();
+      }
+    }
   }
 
-
   openProjectDialog() {
-    const projectDialogRef = this.dialog.open(ProjectDialogComponent, {
+    this.dialog.open(ProjectDialogComponent, {
       autoFocus: false
     });
   }
@@ -57,4 +95,13 @@ export class ProjectListComponent implements OnInit {
     this.allStatus = this.allStatus.filter((value, index, self) => self.indexOf(value) === index);
   }
 
+  private filterProjects(projects: Project[], name?: string) {
+    for (const project of projects as Project[]) {
+      if (project.name.toLowerCase().includes(name.toLowerCase())) {
+        this.filteredProjects.push(project);
+      }
+    }
+    this.projects = this.filteredProjects;
+    this.filteredProjects = [];
+  }
 }
