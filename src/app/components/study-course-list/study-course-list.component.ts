@@ -3,7 +3,6 @@ import {StudyCourse} from '../../shared/hal-resources/study-course.resource';
 import {StudyCourseService} from '../../core/services/study-course.service';
 import {HalOptions} from 'angular4-hal';
 import {MatSelectChange} from '@angular/material';
-import {Project} from '../../shared/hal-resources/project.resource';
 
 @Component({
   selector: 'app-module-list',
@@ -29,7 +28,9 @@ export class StudyCourseListComponent implements OnInit {
   getAllStudyCourses() {
     const options: HalOptions = {sort: [{path: 'name', order: 'ASC'}]};
     this.studyCourseService.getAll(options).subscribe(
-      (studyCourses: StudyCourse[]) => { this.studyCourses = studyCourses; },
+      (studyCourses: StudyCourse[]) => {
+        this.studyCourses = studyCourses;
+      },
       error => console.log(error),
       () => this.fillAcademicDegrees(this.studyCourses));
   }
@@ -56,7 +57,7 @@ export class StudyCourseListComponent implements OnInit {
     const academicDegree = event.value;
     if (academicDegree) {
       this.selectedAcademicDegree = academicDegree;
-      if (this.selectedName)  {
+      if (this.selectedName) {
         this.nameFilter(this.selectedName);
       } else {
         this.academicDegreeFilter(academicDegree);

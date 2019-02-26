@@ -10,9 +10,9 @@ import {StudyCourseDetailsComponent} from './components/study-course-details/stu
 import {HeaderComponent} from './core/header/header.component';
 import {HomeComponent} from './components/home/home.component';
 import {FooterComponent} from './core/footer/footer.component';
-import { ProjectListComponent } from './components/project-list/project-list.component';
-import { ProjectDetailsComponent } from './components/project-details/project-details.component';
-import { ProjectDialogComponent } from './components/project-dialog/project-dialog.component';
+import {ProjectListComponent} from './components/project-list/project-list.component';
+import {ProjectDetailsComponent} from './components/project-details/project-details.component';
+import {ProjectDialogComponent} from './components/project-dialog/project-dialog.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';

@@ -6,7 +6,8 @@
         <mat-card-subtitle>Studiengang</mat-card-subtitle>
         <mat-card-title>{{studyCourse.name}}</mat-card-title>
         <mat-card-subtitle>Akademischer Grad</mat-card-subtitle>
-        <mat-card-title>{{studyCourse.academicDegree.charAt(0).toUpperCase() + studyCourse.academicDegree.slice(1).toLowerCase()}}</mat-card-title>
+        <mat-card-title>{{studyCourse.academicDegree.charAt(0).toUpperCase()
+        + studyCourse.academicDegree.slice(1).toLowerCase()}}</mat-card-title>
         <mat-card-subtitle>Module</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content *ngFor="let module of studyCourse.getModuleArray()">

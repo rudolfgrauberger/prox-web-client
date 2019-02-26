@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
 import {MatDialog, MatSelectChange} from '@angular/material';
 import {ProjectDialogComponent} from '../project-dialog/project-dialog.component';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -18,7 +17,8 @@ export class ProjectListComponent implements OnInit {
   selectedName: string;
 
   constructor(private projectService: ProjectService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.getAllProjects();

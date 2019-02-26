@@ -3,14 +3,15 @@
     <h1>Projekte</h1>
     <div class="project-options">
       <mat-form-field>
-        <mat-select placeholder="Status" (selectionChange)="filterProjectsByStatus($event)">
+        <mat-select (selectionChange)="filterProjectsByStatus($event)" placeholder="Status">
           <mat-option>Alle</mat-option>
-          <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(0).toUpperCase()
+          <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(
+            0).toUpperCase()
           + status.slice(1).toLowerCase()}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Suche" (keyup)="filterProjectsByName($event)">
+        <input (keyup)="filterProjectsByName($event)" matInput placeholder="Suche">
       </mat-form-field>
       <button (click)="openProjectDialog()" class="no-hover" mat-icon-button>
         <mat-icon>add</mat-icon>
@@ -24,9 +25,9 @@
       <mat-card-subtitle>Status</mat-card-subtitle>
       <mat-card-title>
         <div
-          class="status"
           [class.abgeschlossen]="project.status==='ABGESCHLOSSEN'"
           [class.geplant]="project.status==='GEPLANT'"
+          class="status"
         >
           {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
         </div>

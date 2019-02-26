@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
-import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from 'angular4-hal';
+import {ExternalConfiguration, ExternalConfigurationHandlerInterface} from 'angular4-hal';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class ExternalConfigurationService implements ExternalConfigurationHandlerInterface {
+
+  constructor(private http: HttpClient) {
+  }
 
   getProxyUri(): string {
     return environment.url;
@@ -18,9 +21,6 @@ export class ExternalConfigurationService implements ExternalConfigurationHandle
     return this.http;
   }
 
-  constructor(private http: HttpClient) {
-  }
-
   getExternalConfiguration(): ExternalConfiguration {
     return null;
   }
@@ -28,7 +28,9 @@ export class ExternalConfigurationService implements ExternalConfigurationHandle
   setExternalConfiguration(externalConfiguration: ExternalConfiguration) {
   }
 
-  deserialize(): any {}
+  deserialize(): any {
+  }
 
-  serialize(): any {}
+  serialize(): any {
+  }
 }
