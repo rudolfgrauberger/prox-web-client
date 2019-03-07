@@ -1,12 +1,23 @@
 # PTB Web Client
-The purpose of this service is to directly handle user requests by means of a user interface for the "Projekt- und Themenbörse (PTB)" web application of the TH Köln. 
+This web application acts as a frontend to the "Projekt- und Themenbörse (PTB)" of the TH Köln.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
 ## Installation
-...
+```
+docker build -t ptb.archi-lab.io/web-client .
+```
+Builds a Docker image based on the source code and the dependencies in the `package.json` and `package-lock.json`.
 
 ## Usage
+```
+docker-compose -f docker-compose-web-client.yml up
+```
+Starts a Docker container based on the compose file and the image. A Docker network named `ptb` is required for the communication between services:
+```
+docker network create ptb
+```
+
 ### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
