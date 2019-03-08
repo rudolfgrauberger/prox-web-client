@@ -4,20 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
 import {Module} from '../../shared/hal-resources/module.resource';
-
-export class DummyModule {
-  name: string
-}
-
-export const MODULES: DummyModule[] = [
-  { name: 'Module 1'},
-  { name: 'Module 2'},
-  { name: 'Module 3'},
-  { name: 'Module 4'},
-  { name: 'Module 5'},
-  { name: 'Module 6'},
-  { name: 'Module 7'},
-];
+import {ModuleService} from '../../core/services/module.service';
+import {HalOptions} from "angular4-hal";
 
 @Component({
   selector: 'app-project-dialog',
@@ -26,11 +14,12 @@ export const MODULES: DummyModule[] = [
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
-  modules = MODULES;
-  selectedModules: DummyModule[] = [];
+  modules: Module[] = [];
+  selectedModules: Module[] = [];
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
+              private moduleService: ModuleService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar) {
   }
@@ -41,13 +30,14 @@ export class ProjectDialogComponent implements OnInit {
       description: ['', [Validators.required]],
       status: ['', [Validators.required]]
     });
+    this.getModules();
   }
 
   onClose() {
     this.projectDialogRef.close();
   }
 
-  onSelectModule(module: DummyModule) {
+  onSelectModule(module: Module) {
     if (this.selectedModules.includes(module)) {
       const index = this.selectedModules.indexOf(module, 0);
       if (index > -1) {
@@ -56,6 +46,12 @@ export class ProjectDialogComponent implements OnInit {
     } else {
       this.selectedModules.push(module);
     }
+  }
+
+  getModules(): void {
+    const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
+    this.moduleService.getAll(options)
+      .subscribe(tmpModules => this.modules = tmpModules);
   }
 
   onSubmit(project: Project) {

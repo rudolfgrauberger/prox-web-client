@@ -32,6 +32,7 @@
         </mat-error>
       </mat-form-field>
       <mat-chip-list>
+        <h1 id="module-caption-heading">Modulauswahl</h1>
         <mat-chip *ngFor="let module of modules"
           [class.selected]="selectedModules.includes(module)"
           (click)="onSelectModule(module)">

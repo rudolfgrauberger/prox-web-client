@@ -13,7 +13,7 @@
 }
 
 .project-dialog-form > * {
-  width: 500px;
+  width: 800px;
 }
 
 .mat-dialog-actions {
@@ -52,10 +52,22 @@
 }
 
 .selected {
-  background-color: #b41208 !important;
+  background-color: #b41208;
   color: white;
 }
 
-.mat-list-item {
+.mat-chip-list {
+  padding: 0 0 0 0;
+}
+
+.mat-chip-item {
   font-size: 14px;
+}
+
+#module-caption-heading {
+  font-size: 16px;
+  font-weight: normal;
+  color: #b41208;
+  padding: 0 0 0 0;
+  width: 100%;
 }
