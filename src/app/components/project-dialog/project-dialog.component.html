@@ -23,7 +23,7 @@
         <mat-select [formControl]="projectFormControl.controls['status']" placeholder="Status"
                     required>
           <!-- The following options should be implemented either as enums or imported from backend -->
-          <mat-option value="GEPLANT">Geplant</mat-option>
+          <mat-option value="VERFÜGBAR">Verfügbar</mat-option>
           <mat-option value="LAUFEND">Laufend</mat-option>
           <mat-option value="ABGESCHLOSSEN">Abgeschlossen</mat-option>
         </mat-select>
@@ -31,13 +31,25 @@
           Status <strong>fehlt</strong>!
         </mat-error>
       </mat-form-field>
+      <mat-chip-list>
+        <h1 id="module-caption-heading">Modulauswahl</h1>
+        <mat-chip *ngFor="let module of modules"
+          [class.selected]="selectedModules.includes(module)"
+          (click)="onSelectModule(module)">
+          {{module.name}}
+        </mat-chip>
+      </mat-chip-list>
+      <mat-error *ngIf="selectedModules.length === 0">
+        <strong>Mindestens</strong> ein Modul auswählen!
+      </mat-error>
     </div>
     <div mat-dialog-actions>
       <div class="action-buttons">
         <button (click)="onClose()" mat-button type="reset">Abbrechen</button>
         <button [disabled]="projectFormControl.controls['name'].hasError('required') ||
                                        projectFormControl.controls['description'].hasError('required') ||
-                                       projectFormControl.controls['status'].hasError('required')"
+                                       projectFormControl.controls['status'].hasError('required') ||
+                                       selectedModules.length === 0"
                 mat-button
                 type="submit">Hinzufügen
         </button>

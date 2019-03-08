@@ -13,7 +13,7 @@
 }
 
 .project-dialog-form > * {
-  width: 400px;
+  width: 800px;
 }
 
 .mat-dialog-actions {
@@ -38,6 +38,7 @@
 }
 
 .mat-error {
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 
@@ -48,4 +49,25 @@
 
 .form-textarea {
   font-size: 14px;
+}
+
+.selected {
+  background-color: #b41208;
+  color: white;
+}
+
+.mat-chip-list {
+  padding: 0 0 0 0;
+}
+
+.mat-chip-item {
+  font-size: 14px;
+}
+
+#module-caption-heading {
+  font-size: 16px;
+  font-weight: normal;
+  color: #b41208;
+  padding: 0 0 0 0;
+  width: 100%;
 }

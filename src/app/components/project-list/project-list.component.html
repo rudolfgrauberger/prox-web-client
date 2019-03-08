@@ -34,7 +34,12 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-button routerLink="/projects/{{project.name}}">Details</button>
+      <button mat-button routerLink="/projects/{{project.name}}">
+        Details
+      </button>
+      <button id="project-remove-button" class="no-hover" (click)="deleteProject(project)" mat-icon-button>
+        <mat-icon>remove</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

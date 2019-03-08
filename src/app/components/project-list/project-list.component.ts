@@ -24,6 +24,14 @@ export class ProjectListComponent implements OnInit {
     this.getAllProjects();
   }
 
+  deleteProject(project: Project) {
+    this.projectService.delete(project).subscribe(
+      () => {},
+      error => console.log(error),
+      () => window.location.reload()
+    );
+  }
+
   getAllProjects() {
     this.projectService.getAll().subscribe(
       projects => this.projects = projects,

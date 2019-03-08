@@ -3,6 +3,9 @@ import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
+import {Module} from '../../shared/hal-resources/module.resource';
+import {ModuleService} from '../../core/services/module.service';
+import {HalOptions} from "angular4-hal";
 
 @Component({
   selector: 'app-project-dialog',
@@ -11,9 +14,12 @@ import {Project} from '../../shared/hal-resources/project.resource';
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
+  modules: Module[] = [];
+  selectedModules: Module[] = [];
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
+              private moduleService: ModuleService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar) {
   }
@@ -24,10 +30,28 @@ export class ProjectDialogComponent implements OnInit {
       description: ['', [Validators.required]],
       status: ['', [Validators.required]]
     });
+    this.getModules();
   }
 
   onClose() {
     this.projectDialogRef.close();
+  }
+
+  onSelectModule(module: Module) {
+    if (this.selectedModules.includes(module)) {
+      const index = this.selectedModules.indexOf(module, 0);
+      if (index > -1) {
+        this.selectedModules.splice(index, 1);
+      }
+    } else {
+      this.selectedModules.push(module);
+    }
+  }
+
+  getModules(): void {
+    const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
+    this.moduleService.getAll(options)
+      .subscribe(tmpModules => this.modules = tmpModules);
   }
 
   onSubmit(project: Project) {
