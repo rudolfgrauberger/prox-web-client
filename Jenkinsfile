@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REPOSITORY = "ptb.archi-lab.io"
+        REPOSITORY = "ptb-gp-ss2019.archi-lab.io"
         IMAGE = "web-client"
     }
     stages {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage("Deploy") {
             environment {
-                SERVERPORT = "22412"
+                SERVERPORT = "22413"
                 YMLFILENAME = "docker-compose-web-client.yml"
                 SSHUSER = "jenkins"
                 SERVERNAME = "fsygs15.inf.fh-koeln.de"
