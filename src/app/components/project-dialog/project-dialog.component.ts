@@ -6,6 +6,8 @@ import {Project} from '../../shared/hal-resources/project.resource';
 import {Module} from '../../shared/hal-resources/module.resource';
 import {ModuleService} from '../../core/services/module.service';
 import {HalOptions} from "angular4-hal";
+import {ProjectModuleService} from "../../core/services/projectModule.service";
+import {UUID} from "angular2-uuid";
 
 @Component({
   selector: 'app-project-dialog',
@@ -19,7 +21,7 @@ export class ProjectDialogComponent implements OnInit {
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
-              private moduleService: ModuleService,
+              private projectModuleService: ProjectModuleService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar) {
   }
@@ -50,11 +52,14 @@ export class ProjectDialogComponent implements OnInit {
 
   getModules(): void {
     const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
-    this.moduleService.getAll(options)
+    this.projectModuleService.getAll(options)
       .subscribe(tmpModules => this.modules = tmpModules);
   }
 
   onSubmit(project: Project) {
+    //project.modules = this.selectedModules;
+    project.creator = UUID.UUID(); // TODO has to be extracted from session
+
     this.projectService.create(project).subscribe(
       data => {
         this.snack.open(project.name + ' wurde erfolgreich erstellt', null, {
