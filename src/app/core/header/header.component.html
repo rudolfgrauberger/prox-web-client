@@ -6,6 +6,8 @@
       </button>
       <img class="logo-sidebar" src="assets/images/logo-icon.png">
       <mat-list>
+        <app-user></app-user>
+
         <mat-list-item>
           <button (click)="sidenav.toggle()" [routerLinkActiveOptions]="{exact:true}"
                   class="sidebar-button"
@@ -14,6 +16,7 @@
             Startseite
           </button>
         </mat-list-item>
+
         <mat-list-item>
           <button (click)="sidenav.toggle()" class="sidebar-button"
                   mat-button routerLink="projects" routerLinkActive="nav-activated">
@@ -21,6 +24,7 @@
             Projekte
           </button>
         </mat-list-item>
+
         <mat-list-item>
           <button (click)="sidenav.toggle()" class="sidebar-button"
                   mat-button routerLink="study-courses" routerLinkActive="nav-activated">
@@ -28,6 +32,8 @@
             Studiengänge
           </button>
         </mat-list-item>
+
+
       </mat-list>
     </mat-sidenav>
 
