@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AngularHalModule} from 'angular4-hal';
 
 import {ExternalConfigurationService} from './core/services/external-configuration.service';
@@ -45,6 +45,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import {keycloakInitializer} from './keycloak/keycloak-init';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     ProjectListComponent,
     ProjectDetailsComponent,
-    ProjectDialogComponent
+    ProjectDialogComponent,
+    UserComponent
   ],
   imports: [
     AppRoutingModule,
@@ -95,15 +99,22 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    KeycloakAngularModule
   ],
   entryComponents: [
     ProjectDialogComponent
   ],
   providers: [
-    {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService}
+    {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService},
+    {
+      provide: APP_INITIALIZER,
+      useFactory: keycloakInitializer,
+      multi: true,
+      deps: [KeycloakService]
+    },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+
+export class AppModule {}

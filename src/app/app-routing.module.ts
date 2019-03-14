@@ -5,6 +5,7 @@ import {StudyCourseListComponent} from './components/study-course-list/study-cou
 import {StudyCourseDetailsComponent} from './components/study-course-details/study-course-details.component';
 import {ProjectListComponent} from './components/project-list/project-list.component';
 import {ProjectDetailsComponent} from './components/project-details/project-details.component';
+import {AppAuthGuard} from './keycloak/AppAuthGuard';
 
 const routes: Routes = [
   {
@@ -13,25 +14,28 @@ const routes: Routes = [
   },
   {
     path: 'projects',
-    component: ProjectListComponent
+    component: ProjectListComponent,
+ //   canActivate: [AppAuthGuard],
+ //   data: { roles: ['Dozent'] }
   },
   {
     path: 'projects/:name',
-    component: ProjectDetailsComponent
+    component: ProjectDetailsComponent,
   },
   {
     path: 'study-courses',
-    component: StudyCourseListComponent
+    component: StudyCourseListComponent,
   },
   {
     path: 'study-courses/:name',
-    component: StudyCourseDetailsComponent
-  }
+    component: StudyCourseDetailsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AppAuthGuard]
 })
 export class AppRoutingModule {
 }
