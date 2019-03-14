@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  url: 'https://gptest.archi-lab.io/'
+  url: 'http://localhost:9002'
 };
