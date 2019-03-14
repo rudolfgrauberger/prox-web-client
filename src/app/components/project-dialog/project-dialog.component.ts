@@ -56,10 +56,19 @@ export class ProjectDialogComponent implements OnInit {
       .subscribe(tmpModules => this.modules = tmpModules);
   }
 
+  linkModules(linkProject: Project) {
+    // Type Resource is needed for updating relations so that the resource has to be retrieved
+    this.projectService.getBySelfLink(linkProject._links.self.href).subscribe(
+      project => {
+        project.setModules(this.selectedModules);
+      }
+    );
+  }
+
   onSubmit(project: Project) {
-    //project.modules = this.selectedModules;
     project.creator = UUID.UUID(); // TODO has to be extracted from session
 
+    // Create Project
     this.projectService.create(project).subscribe(
       data => {
         this.snack.open(project.name + ' wurde erfolgreich erstellt', null, {
@@ -68,6 +77,9 @@ export class ProjectDialogComponent implements OnInit {
         setTimeout(() => window.location.reload(), 500);
       },
       error => console.log(error),
+      () => {
+        this.linkModules(project);
+      }
     );
   }
 }

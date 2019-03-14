@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://gptest.archi-lab.io/'
+  url: 'https://gpdev.archi-lab.io/'
 };

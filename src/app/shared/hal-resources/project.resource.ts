@@ -1,6 +1,6 @@
 import {Resource} from 'angular4-hal';
-import {Module} from "./module.resource";
 import { UUID } from 'angular2-uuid';
+import {Module} from "./module.resource";
 
 export class Project extends Resource {
   name: string;
@@ -8,5 +8,17 @@ export class Project extends Resource {
   status: string;
   creator: UUID;
 
-  //modules: Module[];
+  modules: Module[] = [];
+
+  setModules(newModules: Module[]) {
+    this.modules = newModules;
+
+    // TODO delete relation modules
+    for (let module of this.modules) {
+      this.updateRelation("modules", module).subscribe(
+        () => {},
+        error => console.log(error)
+      );
+    }
+  }
 }
