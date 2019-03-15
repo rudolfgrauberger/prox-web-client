@@ -1,6 +1,7 @@
 import {Resource} from 'angular4-hal';
 import { UUID } from 'angular2-uuid';
 import {Module} from "./module.resource";
+import {Observable} from "rxjs";
 
 export class Project extends Resource {
   name: string;
@@ -9,17 +10,31 @@ export class Project extends Resource {
   creatorID: UUID;
   creatorName: string;
 
-  modules: Module[] = [];
-
   setModules(newModules: Module[]) {
-    this.modules = newModules;
+    this.getModules().subscribe(
+      deleteModules => {
+        for (let deleteModule of deleteModules) {
+          this.deleteRelation("modules", deleteModule).subscribe(
+            () => {},
+            error => console.log(error)
+          );
+        }
+      },
+      error => console.log(error),
+      () => this.addModules(newModules)
+    );
+  }
 
-    // TODO delete relation modules
-    for (let module of this.modules) {
+  addModules(newModules: Module[]) {
+    for (let module of newModules) {
       this.updateRelation("modules", module).subscribe(
         () => {},
         error => console.log(error)
       );
     }
+  }
+
+  getModules(): Observable<Module[]> {
+    return this.getRelationArray(Module, 'modules');
   }
 }
