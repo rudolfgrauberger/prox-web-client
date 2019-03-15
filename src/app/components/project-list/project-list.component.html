@@ -32,7 +32,7 @@
           [class.geplant]="project.status==='GEPLANT'"
           class="status"
         >
-          {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
+        {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
         </div>
       </mat-card-title>
     </mat-card-header>
@@ -41,7 +41,7 @@
         Details
       </button>
       <button id="project-remove-button" class="no-hover" (click)="deleteProject(project)" mat-icon-button>
-        <mat-icon>remove</mat-icon>
+        <mat-icon>delete_forever</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>
