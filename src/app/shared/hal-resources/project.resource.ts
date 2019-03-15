@@ -6,7 +6,8 @@ export class Project extends Resource {
   name: string;
   description: string;
   status: string;
-  creator: UUID;
+  creatorID: UUID;
+  creatorName: string;
 
   modules: Module[] = [];
 

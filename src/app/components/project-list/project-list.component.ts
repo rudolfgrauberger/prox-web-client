@@ -15,6 +15,7 @@ export class ProjectListComponent implements OnInit {
   allStatus: string[] = [];
   selectedStatus: string;
   selectedName: string;
+  selectedCreatorName: string;
 
   constructor(private projectService: ProjectService,
               public dialog: MatDialog) {
@@ -46,6 +47,12 @@ export class ProjectListComponent implements OnInit {
     );
   }
 
+  creatorNameFilter(creatorName: string) {
+    this.projectService.findByCreatorName(creatorName).subscribe(
+      projects => this.projects = projects
+    );
+  }
+
   nameFilter(name: string) {
     if (this.selectedStatus) {
       this.projectService.findByStatus(this.selectedStatus).subscribe(
@@ -71,8 +78,10 @@ export class ProjectListComponent implements OnInit {
       this.selectedStatus = null;
       if (this.selectedName) {
         this.nameFilter(this.selectedName);
+      } else if (this.selectedCreatorName) {
+        this.creatorNameFilter(this.selectedCreatorName);
       } else {
-        this.getAllProjects();
+          this.getAllProjects();
       }
     }
   }
@@ -86,6 +95,25 @@ export class ProjectListComponent implements OnInit {
       this.selectedName = null;
       if (this.selectedStatus) {
         this.statusFilter(this.selectedStatus);
+      } else if (this.selectedCreatorName) {
+        this.creatorNameFilter(this.selectedCreatorName);
+      } else {
+        this.getAllProjects();
+      }
+    }
+  }
+
+  filterProjectsByCreatorName(event: any) {
+    const creatorName = event.target.value;
+    if (creatorName) {
+      this.selectedCreatorName = creatorName;
+      this.creatorNameFilter(this.selectedCreatorName);
+    } else {
+      this.selectedCreatorName = null;
+      if (this.selectedStatus) {
+        this.statusFilter(this.selectedStatus);
+      } else if (this.selectedName) {
+          this.nameFilter(this.selectedName);
       } else {
         this.getAllProjects();
       }

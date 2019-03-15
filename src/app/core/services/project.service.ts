@@ -16,4 +16,9 @@ export class ProjectService extends RestService<Project> {
     let options: any = {params: [{key: 'status', value: status}]};
     return this.search('findByStatus', options);
   }
+
+  findByCreatorName(creatorName: string): Observable<Project[]> {
+    let options: any = {params: [{key: 'creatorName', value: creatorName}]};
+    return this.search('findByCreatorName', options);
+  }
 }

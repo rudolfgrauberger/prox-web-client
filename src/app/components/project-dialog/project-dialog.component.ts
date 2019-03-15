@@ -66,7 +66,8 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   onSubmit(project: Project) {
-    project.creator = UUID.UUID(); // TODO has to be extracted from session
+    project.creatorID = UUID.UUID(); // TODO has to be extracted from session
+    project.creatorName = "Professor X"; // TODO has to be extracted from session
 
     // Create Project
     this.projectService.create(project).subscribe(

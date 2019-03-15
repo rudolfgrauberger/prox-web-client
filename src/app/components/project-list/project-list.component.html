@@ -13,6 +13,9 @@
       <mat-form-field>
         <input (keyup)="filterProjectsByName($event)" matInput placeholder="Suche">
       </mat-form-field>
+      <mat-form-field>
+        <input (keyup)="filterProjectsByCreatorName($event)" matInput placeholder="Ersteller">
+      </mat-form-field>
       <button (click)="openProjectDialog()" class="no-hover" mat-icon-button>
         <mat-icon>add</mat-icon>
       </button>
