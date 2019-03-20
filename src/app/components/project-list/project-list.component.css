@@ -68,6 +68,11 @@
   color: #9c1e75;
 }
 
+#project-edit-button {
+  margin-right: 5px;
+  float: right;
+}
+
 #project-remove-button {
   float: right;
 }

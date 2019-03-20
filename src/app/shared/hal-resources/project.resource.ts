@@ -10,7 +10,7 @@ export class Project extends Resource {
   creatorID: UUID;
   creatorName: string;
 
-  setModules(newModules: Module[]) {
+  setModules(newModules: Module[]) { // TODO set all modules in one request. how? framework method addRelation can only add one relationship at a time
     this.getModules().subscribe(
       deleteModules => {
         for (let deleteModule of deleteModules) {

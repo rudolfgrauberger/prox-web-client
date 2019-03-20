@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef, MatSnackBar} from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
 import {Module} from '../../shared/hal-resources/module.resource';
 import {ModuleService} from '../../core/services/module.service';
-import {HalOptions} from "angular4-hal";
+import {HalOptions, Resource} from "angular4-hal";
 import {ProjectModuleService} from "../../core/services/projectModule.service";
 import {UUID} from "angular2-uuid";
+import {isPrimitive} from "util";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'app-project-dialog',
@@ -16,14 +18,15 @@ import {UUID} from "angular2-uuid";
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
-  modules: Module[] = [];
-  selectedModules: Module[] = [];
+  modules: Module[] = new Array<Module>(); //[];
+  selectedModules: Module[] = new Array<Module>(); //[];
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
               private projectModuleService: ProjectModuleService,
               private formBuilder: FormBuilder,
-              private snack: MatSnackBar) {
+              private snack: MatSnackBar,
+              @Inject(MAT_DIALOG_DATA) public project: any) {
   }
 
   ngOnInit() {
@@ -32,7 +35,42 @@ export class ProjectDialogComponent implements OnInit {
       description: ['', [Validators.required]],
       status: ['', [Validators.required]]
     });
-    this.getModules();
+
+    this.getModules(() => {
+      this.fillInProjectValuesIfProjectExists();
+    });
+  }
+
+  fillInProjectValuesIfProjectExists() {
+    if (this.project) {
+      this.projectFormControl.controls.name.setValue(this.project.name);
+      this.projectFormControl.controls.description.setValue(this.project.description);
+      this.projectFormControl.controls.status.setValue(this.project.status);
+
+      this.project.getModules().subscribe(
+        modules => {
+          this.setSelectedModules(modules);
+        }
+      );
+    }
+  }
+
+  setSelectedModules(modules: Module[]) {
+    this.selectedModules = [];
+    for (let module of modules) {
+      let tmpModule : Module = this.getModuleBySelfLink(module._links.self.href);
+      if (tmpModule) {
+        this.selectedModules.push(tmpModule);
+      }
+    }
+  }
+
+  getModuleBySelfLink(selfLink: string) : Module {
+    for (let tmpModule of this.modules) {
+      if (tmpModule._links.self.href === selfLink)
+        return tmpModule;
+    }
+    return null;
   }
 
   onClose() {
@@ -50,10 +88,13 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  getModules(): void {
+  getModules(complete: Function) {
     const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
     this.projectModuleService.getAll(options)
-      .subscribe(tmpModules => this.modules = tmpModules);
+      .subscribe(tmpModules => this.modules = tmpModules,
+      error => console.log(error),
+      () => complete()
+    );
   }
 
   linkModules(linkProject: Project) {
@@ -65,22 +106,53 @@ export class ProjectDialogComponent implements OnInit {
     );
   }
 
-  onSubmit(project: Project) {
+  createProject(project: Project) {
     project.creatorID = UUID.UUID(); // TODO has to be extracted from session
     project.creatorName = "Professor X"; // TODO has to be extracted from session
 
     // Create Project
     this.projectService.create(project).subscribe(
-      data => {
+      () => {
         this.snack.open(project.name + ' wurde erfolgreich erstellt', null, {
           duration: 500,
         });
-        setTimeout(() => window.location.reload(), 500);
       },
       error => console.log(error),
       () => {
         this.linkModules(project);
+        window.location.reload();
       }
     );
+  }
+
+  updateProject(project: Project) {
+    this.project.creatorID = UUID.UUID(); // TODO has to be extracted from session
+    this.project.creatorName = "Professor X"; // TODO has to be extracted from session
+    this.project.name = project.name;
+    this.project.description = project.description;
+    this.project.status = project.status;
+    this.project.setModules(this.selectedModules);
+
+    // Update Project
+    this.projectService.update(this.project).subscribe(
+      () => {
+        this.snack.open(project.name + ' wurde erfolgreich bearbeitet', null, {
+          duration: 500,
+        });
+      },
+      error => console.log(error),
+      () => {
+        this.project.setModules(this.selectedModules);
+        window.location.reload();
+      }
+    );
+  }
+
+  onSubmit(project: Project) {
+    if (this.project) {
+      this.updateProject(project);
+    } else {
+      this.createProject(project);
+    }
   }
 }

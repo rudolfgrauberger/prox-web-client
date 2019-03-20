@@ -120,9 +120,10 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
-  openProjectDialog() {
+  openProjectDialog(project: Project) {
     this.dialog.open(ProjectDialogComponent, {
-      autoFocus: false
+      autoFocus: false,
+      data: project
     });
   }
 

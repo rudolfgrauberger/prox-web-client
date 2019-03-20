@@ -1,5 +1,6 @@
 <div class="project-dialog">
-  <h1 mat-dialog-title>Projekt hinzufügen</h1>
+  <h1 mat-dialog-title *ngIf="project==null">Projekt hinzufügen</h1>
+  <h1 mat-dialog-title *ngIf="project">Projekt bearbeiten</h1>
   <form (ngSubmit)="onSubmit(projectFormControl.value)" *ngIf="projectFormControl"
         [formGroup]="projectFormControl"
         class="row" novalidate>
@@ -51,7 +52,16 @@
                                        projectFormControl.controls['status'].hasError('required') ||
                                        selectedModules.length === 0"
                 mat-button
-                type="submit">Hinzufügen
+                type="submit"
+                *ngIf="project"> Änderungen speichern
+        </button>
+        <button [disabled]="projectFormControl.controls['name'].hasError('required') ||
+                                       projectFormControl.controls['description'].hasError('required') ||
+                                       projectFormControl.controls['status'].hasError('required') ||
+                                       selectedModules.length === 0"
+                mat-button
+                type="submit"
+                *ngIf="project==null"> Hinzufügen
         </button>
       </div>
     </div>
