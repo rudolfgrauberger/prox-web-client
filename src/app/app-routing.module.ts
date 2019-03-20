@@ -15,8 +15,8 @@ const routes: Routes = [
   {
     path: 'projects',
     component: ProjectListComponent,
- //   canActivate: [AppAuthGuard],
- //   data: { roles: ['Dozent'] }
+   // canActivate: [AppAuthGuard],
+   //  data: { roles: ['Dozent'] }
   },
   {
     path: 'projects/:name',

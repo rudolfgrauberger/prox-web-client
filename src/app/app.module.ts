@@ -47,7 +47,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {keycloakInitializer} from './keycloak/keycloak-init';
-import { UserComponent } from './components/user/user.component';
+import {UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [

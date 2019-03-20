@@ -8,7 +8,8 @@ export function keycloakInitializer(keycloak: KeycloakService): () =>
     return () => keycloak.init({
       config: environment.keycloak,
       initOptions: {
-        checkLoginIframe: false
+        onLoad: 'check-sso',
+        checkLoginIframe: true,
       },
       enableBearerInterceptor: false,
     });
@@ -17,7 +18,7 @@ export function keycloakInitializer(keycloak: KeycloakService): () =>
       config: environment.keycloak,
       initOptions: {
         onLoad: 'check-sso',
-        checkLoginIframe: false
+        checkLoginIframe: true,
       },
       enableBearerInterceptor: false,
       bearerExcludedUrls: [

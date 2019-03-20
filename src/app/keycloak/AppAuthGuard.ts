@@ -20,9 +20,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
           return;
         }
 
-        const isLoggedIn = await this.keycloakAngular.isLoggedIn();
-
-        if (isLoggedIn) {
+        if (this.authenticated) {
           console.log('userName: ' + await this.keycloakAngular.getUsername());
         } else {
           await this.keycloakAngular.login();
@@ -33,8 +31,6 @@ export class AppAuthGuard extends KeycloakAuthGuard {
             resolve(true);
             return;
           }
-
-          resolve(false);
         }
       } catch (e) {
         console.log('isAccessAllowed error');
