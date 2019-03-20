@@ -40,11 +40,11 @@
       <button mat-button routerLink="/projects/{{project.name}}">
         Details
       </button>
-      <button id="project-edit-button" class="no-hover" (click)="openProjectDialog(project)" mat-icon-button>
-        <mat-icon>edit</mat-icon>
-      </button>
       <button id="project-remove-button" class="no-hover" (click)="deleteProject(project)" mat-icon-button>
         <mat-icon>delete_forever</mat-icon>
+      </button>
+      <button id="project-edit-button" class="no-hover" (click)="openProjectDialog(project)" mat-icon-button>
+        <mat-icon>edit</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>

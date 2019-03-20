@@ -120,7 +120,7 @@ export class ProjectDialogComponent implements OnInit {
       error => console.log(error),
       () => {
         this.linkModules(project);
-        window.location.reload();
+        setTimeout(function(){ window.location.reload(); }, 1000);
       }
     );
   }
@@ -143,7 +143,7 @@ export class ProjectDialogComponent implements OnInit {
       error => console.log(error),
       () => {
         this.project.setModules(this.selectedModules);
-        window.location.reload();
+        setTimeout(function(){ window.location.reload(); }, 1000);
       }
     );
   }
