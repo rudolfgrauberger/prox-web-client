@@ -18,8 +18,8 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
-  modules: Module[] = new Array<Module>(); //[];
-  selectedModules: Module[] = new Array<Module>(); //[];
+  modules: Module[] = [];
+  selectedModules: Module[] = [];
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,

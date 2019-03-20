@@ -16,7 +16,7 @@
       <mat-form-field>
         <input (keyup)="filterProjectsByCreatorName($event)" matInput placeholder="Ersteller">
       </mat-form-field>
-      <button (click)="openProjectDialog()" *ngIf="canAdd" class="no-hover" mat-icon-button>
+      <button (click)="openProjectDialog(null)" *ngIf="canAdd" class="no-hover" mat-icon-button>
       <mat-icon>add</mat-icon>
     </button>
     </div>
@@ -39,6 +39,9 @@
     <mat-card-actions>
       <button mat-button routerLink="/projects/{{project.name}}">
         Details
+      </button>
+      <button id="project-edit-button" class="no-hover" (click)="openProjectDialog(project)" mat-icon-button>
+        <mat-icon>edit</mat-icon>
       </button>
       <button id="project-remove-button" class="no-hover" (click)="deleteProject(project)" mat-icon-button>
         <mat-icon>delete_forever</mat-icon>
