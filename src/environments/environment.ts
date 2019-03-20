@@ -4,6 +4,7 @@
 
 import {KeycloakConfig} from 'keycloak-angular';
 
+
 const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost:8080/auth',
   realm: 'PTB',
@@ -13,5 +14,5 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   keycloak: keycloakConfig,
-  url: 'http://localhost:9002/'
+  url: 'https://gptest.archi-lab.io/'
 };

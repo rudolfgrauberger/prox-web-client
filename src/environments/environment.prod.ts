@@ -1,8 +1,8 @@
 import {KeycloakConfig} from 'keycloak-angular';
 
 const keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:8080/auth',
-  realm: 'PTB',
+  url: 'https://login.coalbase.io/auth',
+  realm: 'prox',
   clientId: 'ptb-web-client'
 };
 
