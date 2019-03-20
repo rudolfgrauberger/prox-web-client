@@ -10,19 +10,13 @@ export class AppAuthGuard extends KeycloakAuthGuard {
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-
       try {
-        console.log('isAccesAllow: ' + route.data.roles);
-
         if (route.data.roles == null) {
-          console.log('No restrictions');
           resolve(true);
           return;
         }
 
-        if (this.authenticated) {
-          console.log('userName: ' + await this.keycloakAngular.getUsername());
-        } else {
+        if (!this.authenticated) {
           await this.keycloakAngular.login();
         }
 
@@ -34,7 +28,6 @@ export class AppAuthGuard extends KeycloakAuthGuard {
         }
       } catch (e) {
         console.log('isAccessAllowed error');
-        console.log(e);
     }
     });
   }

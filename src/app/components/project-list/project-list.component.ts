@@ -3,6 +3,7 @@ import {ProjectService} from '../../core/services/project.service';
 import {Project} from '../../shared/hal-resources/project.resource';
 import {MatDialog, MatSelectChange} from '@angular/material';
 import {ProjectDialogComponent} from '../project-dialog/project-dialog.component';
+import {KeyCloakUser} from '../../keycloak/KeyCloakUser';
 
 @Component({
   selector: 'app-project-list',
@@ -16,9 +17,13 @@ export class ProjectListComponent implements OnInit {
   selectedStatus: string;
   selectedName: string;
   selectedCreatorName: string;
+  canAdd = false;
 
-  constructor(private projectService: ProjectService,
+  constructor(private projectService: ProjectService, private user: KeyCloakUser,
               public dialog: MatDialog) {
+    this.user.Load().then(() => {
+      this.canAdd = user.hasRole('Dozent');
+    });
   }
 
   ngOnInit() {

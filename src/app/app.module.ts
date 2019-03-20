@@ -47,7 +47,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {keycloakInitializer} from './keycloak/keycloak-init';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {UserComponent } from './components/user/user.component';
+import {BearerInterceptor} from './keycloak/bearer.interceptor';
+import {KeyCloakUser} from './keycloak/KeyCloakUser';
 
 @NgModule({
   declarations: [
@@ -113,6 +116,12 @@ import {UserComponent } from './components/user/user.component';
       multi: true,
       deps: [KeycloakService]
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BearerInterceptor,
+      multi: true
+    },
+    KeyCloakUser
   ],
   bootstrap: [AppComponent]
 })

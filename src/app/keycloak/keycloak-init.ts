@@ -11,6 +11,7 @@ export function keycloakInitializer(keycloak: KeycloakService): () =>
         onLoad: 'check-sso',
         checkLoginIframe: true,
       },
+      // disable default interceptor, we use custom interceptor(bearer.interceptor.ts)
       enableBearerInterceptor: false,
     });
   } else {
@@ -20,11 +21,8 @@ export function keycloakInitializer(keycloak: KeycloakService): () =>
         onLoad: 'check-sso',
         checkLoginIframe: true,
       },
-      enableBearerInterceptor: false,
-      bearerExcludedUrls: [
-        'study-courses', 'studycourses',
-        'projects',
-      ]
+      // disable default interceptor, we use custom interceptor(bearer.interceptor.ts)
+      enableBearerInterceptor: false
     });
   }
 }
