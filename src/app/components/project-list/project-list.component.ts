@@ -17,12 +17,12 @@ export class ProjectListComponent implements OnInit {
   selectedStatus: string;
   selectedName: string;
   selectedCreatorName: string;
-  canAdd = false;
+  hasPermission = false;
 
   constructor(private projectService: ProjectService, private user: KeyCloakUser,
               public dialog: MatDialog) {
     this.user.Load().then(() => {
-      this.canAdd = user.hasRole('Dozent');
+      this.hasPermission = user.hasRole('Dozent');
     });
   }
 
