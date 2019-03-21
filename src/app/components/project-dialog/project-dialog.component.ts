@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../core/services/project.service';
@@ -18,6 +18,7 @@ import {StudyCourse} from "../../shared/hal-resources/study-course.resource";
   styleUrls: ['./project-dialog.component.css']
 })
 export class ProjectDialogComponent implements OnInit {
+  onProjectAdded = new EventEmitter();
   projectFormControl: FormGroup;
   modules: Module[] = [];
   selectedModules: Module[] = [];
@@ -138,7 +139,7 @@ export class ProjectDialogComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        window.location.reload();
+        this.onProjectAdded.emit();
       }
     );
   }
@@ -160,7 +161,7 @@ export class ProjectDialogComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        window.location.reload();
+        this.onProjectAdded.emit();
       }
     );
   }

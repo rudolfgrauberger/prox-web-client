@@ -34,7 +34,7 @@ export class ProjectListComponent implements OnInit {
     this.projectService.delete(project).subscribe(
       () => {},
       error => console.log(error),
-      () => window.location.reload()
+      () => this.getAllProjects()
     );
   }
 
@@ -126,10 +126,16 @@ export class ProjectListComponent implements OnInit {
   }
 
   openProjectDialog(project: Project) {
-    this.dialog.open(ProjectDialogComponent, {
+    let dialog = this.dialog.open(ProjectDialogComponent, {
       autoFocus: false,
       data: project
     });
+
+    dialog.componentInstance.onProjectAdded.subscribe(() => {
+      this.getAllProjects();
+      dialog.close();
+    });
+    dialog.afterClosed().subscribe(() => { });
   }
 
   private fillStatus(projects: Project[]) {
