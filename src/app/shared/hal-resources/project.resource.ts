@@ -9,8 +9,9 @@ export class Project extends Resource {
   status: string;
   creatorID: UUID;
   creatorName: string;
+  supervisorName: string;
 
-  setModules(newModules: Module[]) { // Framework workaround Framework serialized Module[] in a wrong way -> Backend doesnt understand
+  setModules(newModules: Module[]) { // Framework workaround, Framework serialized Module[] in a wrong way -> Backend doesnt understand
     this["modules"] = new Array();
 
     for (let module of newModules) {

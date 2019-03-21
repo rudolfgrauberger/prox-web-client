@@ -35,6 +35,7 @@ export class ProjectDialogComponent implements OnInit {
     this.projectFormControl = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      supervisorName: ['', [Validators.required]],
       status: ['', [Validators.required]]
     });
 
@@ -50,6 +51,7 @@ export class ProjectDialogComponent implements OnInit {
     if (this.project) {
       this.projectFormControl.controls.name.setValue(this.project.name);
       this.projectFormControl.controls.description.setValue(this.project.description);
+      this.projectFormControl.controls.supervisorName.setValue(this.project.supervisorName);
       this.projectFormControl.controls.status.setValue(this.project.status);
 
       this.project.getModules().subscribe(
@@ -121,14 +123,32 @@ export class ProjectDialogComponent implements OnInit {
     );
   }
 
+  createProjectResource(project: Project) : Project {
+    let projectResource : Project;
+    if (this.project) {
+      projectResource = this.project;
+    } else {
+      projectResource = new Project();
+    }
+
+    projectResource.creatorID = UUID.UUID(); // TODO has to be extracted from session
+    projectResource.creatorName = "Professor X"; // TODO has to be extracted from session
+    projectResource.description = project.description;
+    projectResource.name = project.name;
+    projectResource.status = project.status;
+
+    if (project.supervisorName.length == 0) {
+      projectResource.supervisorName = projectResource.creatorName;
+    } else {
+      projectResource.supervisorName = project.supervisorName;
+    }
+
+    projectResource.setModules(this.selectedModules);
+    return projectResource;
+  }
+
   createProject(project: Project) {
-    let newProject = new Project();
-    newProject.creatorID = UUID.UUID(); // TODO has to be extracted from session
-    newProject.creatorName = "Professor X"; // TODO has to be extracted from session
-    newProject.description = project.description;
-    newProject.name = project.name;
-    newProject.status = project.status;
-    newProject.setModules(this.selectedModules);
+    let newProject = this.createProjectResource(project);
 
     // Create Project
     this.projectService.create(newProject).subscribe(
@@ -145,17 +165,12 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   updateProject(project: Project) {
-    this.project.creatorID = UUID.UUID(); // TODO has to be extracted from session
-    this.project.creatorName = "Professor X"; // TODO has to be extracted from session
-    this.project.name = project.name;
-    this.project.description = project.description;
-    this.project.status = project.status;
-    this.project.setModules(this.selectedModules);
+    this.project = this.createProjectResource(project);
 
     // Update Project
     this.projectService.patch(this.project).subscribe(
       () => {
-        this.snack.open(project.name + ' wurde erfolgreich bearbeitet', null, {
+        this.snack.open(this.project.name + ' wurde erfolgreich bearbeitet', null, {
           duration: 500,
         });
       },

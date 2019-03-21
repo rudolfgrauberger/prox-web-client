@@ -21,6 +21,10 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
+        <input [formControl]="projectFormControl.controls['supervisorName']" matInput
+               placeholder="Betreuer" required>
+      </mat-form-field>
+      <mat-form-field>
         <mat-select [formControl]="projectFormControl.controls['status']" placeholder="Status"
                     required>
           <!-- The following options should be implemented either as enums or imported from backend -->
