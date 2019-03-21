@@ -97,30 +97,25 @@ export class ProjectDialogComponent implements OnInit {
     );
   }
 
-  linkModules(linkProject: Project) {
-    // Type Resource is needed for updating relations so that the resource has to be retrieved
-    this.projectService.getBySelfLink(linkProject._links.self.href).subscribe(
-      project => {
-        project.setModules(this.selectedModules);
-      }
-    );
-  }
-
   createProject(project: Project) {
-    project.creatorID = UUID.UUID(); // TODO has to be extracted from session
-    project.creatorName = "Professor X"; // TODO has to be extracted from session
+    let newProject = new Project();
+    newProject.creatorID = UUID.UUID(); // TODO has to be extracted from session
+    newProject.creatorName = "Professor X"; // TODO has to be extracted from session
+    newProject.description = project.description;
+    newProject.name = project.name;
+    newProject.status = project.status;
+    newProject.setModules(this.selectedModules);
 
     // Create Project
-    this.projectService.create(project).subscribe(
+    this.projectService.create(newProject).subscribe(
       () => {
-        this.snack.open(project.name + ' wurde erfolgreich erstellt', null, {
+        this.snack.open(newProject.name + ' wurde erfolgreich erstellt', null, {
           duration: 500,
         });
       },
       error => console.log(error),
       () => {
-        this.linkModules(project);
-        setTimeout(function(){ window.location.reload(); }, 1000);
+        window.location.reload();
       }
     );
   }
@@ -134,7 +129,7 @@ export class ProjectDialogComponent implements OnInit {
     this.project.setModules(this.selectedModules);
 
     // Update Project
-    this.projectService.update(this.project).subscribe(
+    this.projectService.patch(this.project).subscribe(
       () => {
         this.snack.open(project.name + ' wurde erfolgreich bearbeitet', null, {
           duration: 500,
@@ -142,8 +137,7 @@ export class ProjectDialogComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        this.project.setModules(this.selectedModules);
-        setTimeout(function(){ window.location.reload(); }, 1000);
+        window.location.reload();
       }
     );
   }
