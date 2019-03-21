@@ -10,6 +10,7 @@ import {ProjectModuleService} from "../../core/services/projectModule.service";
 import {UUID} from "angular2-uuid";
 import {isPrimitive} from "util";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {StudyCourse} from "../../shared/hal-resources/study-course.resource";
 
 @Component({
   selector: 'app-project-dialog',
@@ -36,7 +37,10 @@ export class ProjectDialogComponent implements OnInit {
       status: ['', [Validators.required]]
     });
 
-    this.getModules(() => {
+    this.getModules().then((modules) => {
+      for (let module of modules) {
+        module.getStudyCourseArray().then();
+      }
       this.fillInProjectValuesIfProjectExists();
     });
   }
@@ -53,6 +57,22 @@ export class ProjectDialogComponent implements OnInit {
         }
       );
     }
+  }
+
+  buildModuleIdentifier(module: Module) : string {
+    var identifier : string = module.name;
+    identifier = identifier.concat(" {");
+
+    for (var i = 0; i < module.studyCourses.length; i++) {
+      if (i != 0) {
+        identifier = identifier.concat(", ");
+      }
+
+      identifier = identifier.concat(module.studyCourses[i].name);
+    }
+
+    identifier = identifier.concat("}");
+    return identifier;
   }
 
   setSelectedModules(modules: Module[]) {
@@ -88,12 +108,15 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  getModules(complete: Function) {
-    const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
-    this.projectModuleService.getAll(options)
-      .subscribe(tmpModules => this.modules = tmpModules,
-      error => console.log(error),
-      () => complete()
+  getModules() : Promise<Module[]> {
+    return new Promise<Module[]> ((resolve, reject) => {
+      const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
+      this.projectModuleService.getAll(options)
+        .subscribe(tmpModules => this.modules = tmpModules,
+            error => reject(error),
+          () => resolve(this.modules)
+        );
+      }
     );
   }
 
