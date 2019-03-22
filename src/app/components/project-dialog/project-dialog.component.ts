@@ -11,6 +11,7 @@ import {UUID} from "angular2-uuid";
 import {isPrimitive} from "util";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
 import {StudyCourse} from "../../shared/hal-resources/study-course.resource";
+import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
 
 @Component({
   selector: 'app-project-dialog',
@@ -28,6 +29,7 @@ export class ProjectDialogComponent implements OnInit {
               private projectModuleService: ProjectModuleService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar,
+              private user: KeyCloakUser,
               @Inject(MAT_DIALOG_DATA) public project: any) {
   }
 
@@ -63,10 +65,10 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   buildModuleIdentifier(module: Module) : string {
-    var identifier : string = module.name;
+    let identifier : string = module.name;
     identifier = identifier.concat(" {");
 
-    for (var i = 0; i < module.studyCourses.length; i++) {
+    for (let i = 0; i < module.studyCourses.length; i++) {
       if (i != 0) {
         identifier = identifier.concat(", ");
       }
@@ -131,8 +133,8 @@ export class ProjectDialogComponent implements OnInit {
       projectResource = new Project();
     }
 
-    projectResource.creatorID = UUID.UUID(); // TODO has to be extracted from session
-    projectResource.creatorName = "Professor X"; // TODO has to be extracted from session
+    projectResource.creatorID = this.user.getID();
+    projectResource.creatorName = this.user.getFullName();
     projectResource.description = project.description;
     projectResource.name = project.name;
     projectResource.status = project.status;
