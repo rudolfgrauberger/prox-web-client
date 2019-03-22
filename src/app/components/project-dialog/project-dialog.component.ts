@@ -23,6 +23,7 @@ export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
   modules: Module[] = [];
   selectedModules: Module[] = [];
+  hasSubmitted: boolean = false;
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
@@ -184,6 +185,8 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   onSubmit(project: Project) {
+    this.hasSubmitted = true;
+
     if (this.project) {
       this.updateProject(project);
     } else {

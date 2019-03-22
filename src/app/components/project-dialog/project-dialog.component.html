@@ -54,7 +54,8 @@
         <button [disabled]="projectFormControl.controls['name'].hasError('required') ||
                                        projectFormControl.controls['description'].hasError('required') ||
                                        projectFormControl.controls['status'].hasError('required') ||
-                                       selectedModules.length === 0"
+                                       selectedModules.length === 0 ||
+                                       hasSubmitted"
                 mat-button
                 type="submit"
                 *ngIf="project"> Änderungen speichern
@@ -62,7 +63,8 @@
         <button [disabled]="projectFormControl.controls['name'].hasError('required') ||
                                        projectFormControl.controls['description'].hasError('required') ||
                                        projectFormControl.controls['status'].hasError('required') ||
-                                       selectedModules.length === 0"
+                                       selectedModules.length === 0 ||
+                                       hasSubmitted"
                 mat-button
                 type="submit"
                 *ngIf="project==null"> Hinzufügen
