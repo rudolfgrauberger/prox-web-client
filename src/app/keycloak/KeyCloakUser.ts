@@ -1,12 +1,19 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 
 @Injectable()
 export class KeyCloakUser {
 
+  onUserChanged = new EventEmitter();
+
+  private _id = '';
   private _isLoggedIn = false;
   private _username = '';
+  private _firstName = '';
+  private _lastName = '';
+  private _fullname = '';
   private _roles: string[] = [];
+
 
   constructor(protected keycloakAngular: KeycloakService) {
     this.Load();
@@ -16,12 +23,39 @@ export class KeyCloakUser {
     this._isLoggedIn = await this.keycloakAngular.isLoggedIn();
 
     if (this._isLoggedIn) {
-      this._username = await this.keycloakAngular.getUsername();
+
       this._roles = await this.keycloakAngular.getUserRoles(true);
+
+      const keycloak = await this.keycloakAngular.getKeycloakInstance();
+
+      keycloak.loadUserInfo().success((userInfo) => {
+        this._id = userInfo['sub'];
+        this._username = userInfo['preferred_username'];
+        this._firstName = userInfo['given_name'];
+        this._lastName = userInfo['family_name'];
+        this._fullname = userInfo['name'];
+
+        this.onUserChanged.emit();
+      }).error(() => {
+        this.Reset();
+      });
     } else {
-      this._username = '';
-      this._roles = [];
+      this.Reset();
     }
+  }
+
+  private Reset() {
+
+    this._id = '';
+    this._username = '';
+    this._firstName = '';
+    this._lastName = '';
+    this._fullname = '';
+    this._roles = [];
+
+    this._isLoggedIn = false;
+
+    this.onUserChanged.emit();
   }
 
   public isLoggedIn(): boolean {
@@ -29,6 +63,14 @@ export class KeyCloakUser {
   }
   public getUserName(): string {
     return this._username;
+  }
+
+  public getFullName(): string {
+    return this._fullname;
+  }
+
+  public getID(): string {
+    return this._id;
   }
 
   public hasRole(role: string): boolean {

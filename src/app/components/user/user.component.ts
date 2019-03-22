@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {KeycloakService} from 'keycloak-angular';
 import {KeyCloakUser} from '../../keycloak/KeyCloakUser';
 
 @Component({
@@ -13,19 +12,17 @@ export class UserComponent implements OnInit {
   isLoggedIn = false;
 
   constructor(protected user: KeyCloakUser) {
+    user.onUserChanged.subscribe(() => {this.onUserChanged(); });
   }
-
-  async ngOnInit() {
-    this.Load();
+  ngOnInit(): void {
+    this.onUserChanged();
   }
-
-  private async Load() {
-    await this.user.Load();
-
+  
+  private onUserChanged() {
     this.isLoggedIn = this.user.isLoggedIn();
 
     if (this.isLoggedIn) {
-      this.username = this.user.getUserName();
+      this.username = this.user.getFullName();
     } else {
       this.username = '';
     }
@@ -33,11 +30,11 @@ export class UserComponent implements OnInit {
 
   async login() {
     await this.user.login();
-    this.Load();
   }
 
   async logout() {
     await this.user.logout();
-    this.Load();
   }
+
+
 }
