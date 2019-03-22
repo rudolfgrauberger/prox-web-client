@@ -16,7 +16,7 @@ export class ProjectListComponent implements OnInit {
   allStatus: string[] = [];
   selectedStatus: string;
   selectedName: string;
-  selectedCreatorName: string;
+  selectedSupervisorName: string;
   hasPermission = false;
 
   constructor(private projectService: ProjectService, private user: KeyCloakUser,
@@ -52,8 +52,8 @@ export class ProjectListComponent implements OnInit {
     );
   }
 
-  creatorNameFilter(creatorName: string) {
-    this.projectService.findByCreatorName(creatorName).subscribe(
+  supervisorNameFilter(creatorName: string) {
+    this.projectService.findBySupervisorName(creatorName).subscribe(
       projects => this.projects = projects
     );
   }
@@ -83,8 +83,8 @@ export class ProjectListComponent implements OnInit {
       this.selectedStatus = null;
       if (this.selectedName) {
         this.nameFilter(this.selectedName);
-      } else if (this.selectedCreatorName) {
-        this.creatorNameFilter(this.selectedCreatorName);
+      } else if (this.selectedSupervisorName) {
+        this.supervisorNameFilter(this.selectedSupervisorName);
       } else {
           this.getAllProjects();
       }
@@ -100,8 +100,8 @@ export class ProjectListComponent implements OnInit {
       this.selectedName = null;
       if (this.selectedStatus) {
         this.statusFilter(this.selectedStatus);
-      } else if (this.selectedCreatorName) {
-        this.creatorNameFilter(this.selectedCreatorName);
+      } else if (this.selectedSupervisorName) {
+        this.supervisorNameFilter(this.selectedSupervisorName);
       } else {
         this.getAllProjects();
       }
@@ -111,10 +111,10 @@ export class ProjectListComponent implements OnInit {
   filterProjectsByCreatorName(event: any) {
     const creatorName = event.target.value;
     if (creatorName) {
-      this.selectedCreatorName = creatorName;
-      this.creatorNameFilter(this.selectedCreatorName);
+      this.selectedSupervisorName = creatorName;
+      this.supervisorNameFilter(this.selectedSupervisorName);
     } else {
-      this.selectedCreatorName = null;
+      this.selectedSupervisorName = null;
       if (this.selectedStatus) {
         this.statusFilter(this.selectedStatus);
       } else if (this.selectedName) {
