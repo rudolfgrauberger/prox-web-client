@@ -19,7 +19,6 @@ import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
   styleUrls: ['./project-dialog.component.css']
 })
 export class ProjectDialogComponent implements OnInit {
-  onProjectAdded = new EventEmitter();
   projectFormControl: FormGroup;
   modules: Module[] = [];
   selectedModules: Module[] = [];
@@ -48,6 +47,10 @@ export class ProjectDialogComponent implements OnInit {
       }
       this.fillInProjectValuesIfProjectExists();
     });
+  }
+
+  closeDialog() {
+    this.projectDialogRef.close();
   }
 
   fillInProjectValuesIfProjectExists() {
@@ -99,10 +102,6 @@ export class ProjectDialogComponent implements OnInit {
     return null;
   }
 
-  onClose() {
-    this.projectDialogRef.close();
-  }
-
   onSelectModule(module: Module) {
     if (this.selectedModules.includes(module)) {
       const index = this.selectedModules.indexOf(module, 0);
@@ -146,8 +145,13 @@ export class ProjectDialogComponent implements OnInit {
       projectResource.supervisorName = project.supervisorName;
     }
 
-    projectResource.setModules(this.selectedModules);
     return projectResource;
+  }
+
+  private showSubmitInfo(project: Project, message: string) {
+    this.snack.open(project.name + " " + message, null, {
+      duration: 500,
+    });
   }
 
   createProject(project: Project) {
@@ -156,14 +160,16 @@ export class ProjectDialogComponent implements OnInit {
     // Create Project
     this.projectService.create(newProject).subscribe(
       () => {
-        this.snack.open(newProject.name + ' wurde erfolgreich erstellt', null, {
-          duration: 500,
+        newProject.setModules(this.selectedModules).then(() => {
+          this.showSubmitInfo(newProject, "wurde erfolgreich erstellt");
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+          window.location.reload();
         });
       },
-      error => console.log(error),
-      () => {
-        this.onProjectAdded.emit();
-      }
+      error => console.log(error)
     );
   }
 
@@ -171,16 +177,18 @@ export class ProjectDialogComponent implements OnInit {
     this.project = this.createProjectResource(project);
 
     // Update Project
-    this.projectService.patch(this.project).subscribe(
+    this.projectService.update(this.project).subscribe(
       () => {
-        this.snack.open(this.project.name + ' wurde erfolgreich bearbeitet', null, {
-          duration: 500,
+        this.project.setModules(this.selectedModules).then(() => {
+          this.showSubmitInfo(this.project, "wurde erfolgreich bearbeitet");
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+          window.location.reload();
         });
       },
-      error => console.log(error),
-      () => {
-        this.onProjectAdded.emit();
-      }
+      error => console.log(error)
     );
   }
 

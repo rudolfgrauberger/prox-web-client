@@ -1,8 +1,9 @@
 import {Resource} from 'angular4-hal';
 import {Module} from './module.resource';
 import {Observable} from 'rxjs';
+import {CustomResource} from "./custom-resource";
 
-export class StudyCourse extends Resource {
+export class StudyCourse extends CustomResource {
   name: string;
   academicDegree: string;
   modules: Module[];

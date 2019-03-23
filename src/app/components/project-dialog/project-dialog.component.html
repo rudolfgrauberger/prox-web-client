@@ -50,7 +50,7 @@
     </div>
     <div mat-dialog-actions>
       <div class="action-buttons">
-        <button (click)="onClose()" mat-button type="reset">Abbrechen</button>
+        <button (click)="closeDialog()" mat-button type="reset">Abbrechen</button>
         <button [disabled]="projectFormControl.controls['name'].hasError('required') ||
                                        projectFormControl.controls['description'].hasError('required') ||
                                        projectFormControl.controls['status'].hasError('required') ||
