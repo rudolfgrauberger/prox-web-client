@@ -162,11 +162,11 @@ export class ProjectDialogComponent implements OnInit {
       () => {
         newProject.setModules(this.selectedModules).then(() => {
           this.showSubmitInfo(newProject, "wurde erfolgreich erstellt");
-          window.location.reload();
+          this.closeDialog();
         },
         (error) => {
           console.log(error);
-          window.location.reload();
+          this.closeDialog();
         });
       },
       error => console.log(error)
@@ -181,11 +181,11 @@ export class ProjectDialogComponent implements OnInit {
       () => {
         this.project.setModules(this.selectedModules).then(() => {
           this.showSubmitInfo(this.project, "wurde erfolgreich bearbeitet");
-          window.location.reload();
+          this.closeDialog();
         },
         (error) => {
           console.log(error);
-          window.location.reload();
+          this.closeDialog();
         });
       },
       error => console.log(error)

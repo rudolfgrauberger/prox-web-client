@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CacheHelper} from "angular4-hal";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent {
   title = 'Projekt- und Themenbörse';
+
+  constructor() {
+    CacheHelper.isActive = false;
+  }
 }
