@@ -24,14 +24,4 @@ export class Project extends CustomResource {
   getModules(): Observable<Module[]> {
     return this.getRelationArray(Module, 'modules');
   }
-
-  getModuleArray(): Promise<Module[]> {
-    return new Promise<Module[]> ((resolve, reject) => {
-        this.getModules().subscribe(
-          tmp_modules => resolve(tmp_modules),
-          (error) => reject(error)
-        );
-      }
-    );
-  }
 }

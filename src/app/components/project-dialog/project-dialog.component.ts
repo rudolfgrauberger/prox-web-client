@@ -43,7 +43,7 @@ export class ProjectDialogComponent implements OnInit {
 
     this.getModules().then((modules) => {
       for (let module of modules) {
-        module.getStudyCourseArray().then();
+        module.getAndSetStudyCourseArray().then();
       }
       this.fillInProjectValuesIfProjectExists();
     });
@@ -115,7 +115,7 @@ export class ProjectDialogComponent implements OnInit {
 
   getModules() : Promise<Module[]> {
     return new Promise<Module[]> ((resolve, reject) => {
-      const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
+      const options: HalOptions = {params: [{key: "size", value: 50}]}
       this.projectModuleService.getAll(options)
         .subscribe(tmpModules => this.modules = tmpModules,
             error => reject(error),

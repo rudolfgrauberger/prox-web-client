@@ -11,14 +11,13 @@ export class Module extends CustomResource {
     return this.getRelationArray(StudyCourse, 'studyCourses');
   }
 
-  getStudyCourseArray(): Promise<StudyCourse[]> {
+  getAndSetStudyCourseArray(): Promise<StudyCourse[]> {
     return new Promise<StudyCourse[]> ((resolve, reject) => {
       this.getStudyCourses().subscribe(
         tmp_studyCourses => this.studyCourses = tmp_studyCourses,
         () => reject(),
         () => resolve(this.studyCourses)
       );
-      }
-    );
+    });
   }
 }
