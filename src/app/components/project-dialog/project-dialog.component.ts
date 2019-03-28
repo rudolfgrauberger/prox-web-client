@@ -148,9 +148,9 @@ export class ProjectDialogComponent implements OnInit {
     return projectResource;
   }
 
-  private showSubmitInfo(project: Project, message: string) {
-    this.snack.open(project.name + " " + message, null, {
-      duration: 500,
+  private showSubmitInfo(message: string) {
+    this.snack.open(message, null, {
+      duration: 2000,
     });
   }
 
@@ -161,15 +161,20 @@ export class ProjectDialogComponent implements OnInit {
     this.projectService.create(newProject).subscribe(
       () => {
         newProject.setModules(this.selectedModules).then(() => {
-          this.showSubmitInfo(newProject, "wurde erfolgreich erstellt");
+          this.showSubmitInfo("Projekt wurde erfolgreich erstellt");
           this.closeDialog();
         },
         (error) => {
-          console.log(error);
+          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
           this.closeDialog();
+          console.log(error);
         });
       },
-      error => console.log(error)
+      error => {
+        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.hasSubmitted = false;
+        console.log(error);
+      }
     );
   }
 
@@ -180,15 +185,20 @@ export class ProjectDialogComponent implements OnInit {
     this.projectService.update(this.project).subscribe(
       () => {
         this.project.setModules(this.selectedModules).then(() => {
-          this.showSubmitInfo(this.project, "wurde erfolgreich bearbeitet");
+          this.showSubmitInfo("Projekt wurde erfolgreich bearbeitet");
           this.closeDialog();
         },
         (error) => {
-          console.log(error);
+          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
           this.closeDialog();
+          console.log(error);
         });
       },
-      error => console.log(error)
+      error => {
+        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.hasSubmitted = false;
+        console.log(error);
+      }
     );
   }
 
