@@ -1,9 +1,9 @@
-import {Resource} from 'angular4-hal';
 import { UUID } from 'angular2-uuid';
 import {Module} from "./module.resource";
 import {Observable} from "rxjs";
+import {CustomResource} from "./custom-resource";
 
-export class Project extends Resource {
+export class Project extends CustomResource {
   name: string;
   description: string;
   status: string;
@@ -11,12 +11,14 @@ export class Project extends Resource {
   creatorName: string;
   supervisorName: string;
 
-  setModules(newModules: Module[]) { // Framework workaround, Framework serialized Module[] in a wrong way -> Backend doesnt understand
-    this["modules"] = new Array();
-
-    for (let module of newModules) {
-      this["modules"].push(module._links.self.href);
-    }
+  setModules(newModules: Module[]): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.setRelationArray('modules', newModules).subscribe(
+        () => {},
+        error => reject(error),
+        () => resolve()
+      );
+    });
   }
 
   getModules(): Observable<Module[]> {

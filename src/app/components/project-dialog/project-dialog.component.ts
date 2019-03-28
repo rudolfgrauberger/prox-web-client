@@ -19,7 +19,6 @@ import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
   styleUrls: ['./project-dialog.component.css']
 })
 export class ProjectDialogComponent implements OnInit {
-  onProjectAdded = new EventEmitter();
   projectFormControl: FormGroup;
   modules: Module[] = [];
   selectedModules: Module[] = [];
@@ -44,10 +43,14 @@ export class ProjectDialogComponent implements OnInit {
 
     this.getModules().then((modules) => {
       for (let module of modules) {
-        module.getStudyCourseArray().then();
+        module.getAndSetStudyCourseArray().then();
       }
       this.fillInProjectValuesIfProjectExists();
     });
+  }
+
+  closeDialog() {
+    this.projectDialogRef.close();
   }
 
   fillInProjectValuesIfProjectExists() {
@@ -99,10 +102,6 @@ export class ProjectDialogComponent implements OnInit {
     return null;
   }
 
-  onClose() {
-    this.projectDialogRef.close();
-  }
-
   onSelectModule(module: Module) {
     if (this.selectedModules.includes(module)) {
       const index = this.selectedModules.indexOf(module, 0);
@@ -116,7 +115,7 @@ export class ProjectDialogComponent implements OnInit {
 
   getModules() : Promise<Module[]> {
     return new Promise<Module[]> ((resolve, reject) => {
-      const options: HalOptions = {params: [{key: "notPaged", value: true}, {key: "size", value: 30}]}
+      const options: HalOptions = {params: [{key: "size", value: 50}]}
       this.projectModuleService.getAll(options)
         .subscribe(tmpModules => this.modules = tmpModules,
             error => reject(error),
@@ -146,8 +145,13 @@ export class ProjectDialogComponent implements OnInit {
       projectResource.supervisorName = project.supervisorName;
     }
 
-    projectResource.setModules(this.selectedModules);
     return projectResource;
+  }
+
+  private showSubmitInfo(message: string) {
+    this.snack.open(message, null, {
+      duration: 2000,
+    });
   }
 
   createProject(project: Project) {
@@ -156,13 +160,20 @@ export class ProjectDialogComponent implements OnInit {
     // Create Project
     this.projectService.create(newProject).subscribe(
       () => {
-        this.snack.open(newProject.name + ' wurde erfolgreich erstellt', null, {
-          duration: 500,
+        newProject.setModules(this.selectedModules).then(() => {
+          this.showSubmitInfo("Projekt wurde erfolgreich erstellt");
+          this.closeDialog();
+        },
+        (error) => {
+          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
+          this.closeDialog();
+          console.log(error);
         });
       },
-      error => console.log(error),
-      () => {
-        this.onProjectAdded.emit();
+      error => {
+        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.hasSubmitted = false;
+        console.log(error);
       }
     );
   }
@@ -171,15 +182,22 @@ export class ProjectDialogComponent implements OnInit {
     this.project = this.createProjectResource(project);
 
     // Update Project
-    this.projectService.patch(this.project).subscribe(
+    this.projectService.update(this.project).subscribe(
       () => {
-        this.snack.open(this.project.name + ' wurde erfolgreich bearbeitet', null, {
-          duration: 500,
+        this.project.setModules(this.selectedModules).then(() => {
+          this.showSubmitInfo("Projekt wurde erfolgreich bearbeitet");
+          this.closeDialog();
+        },
+        (error) => {
+          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
+          this.closeDialog();
+          console.log(error);
         });
       },
-      error => console.log(error),
-      () => {
-        this.onProjectAdded.emit();
+      error => {
+        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.hasSubmitted = false;
+        console.log(error);
       }
     );
   }

@@ -131,11 +131,9 @@ export class ProjectListComponent implements OnInit {
       data: project
     });
 
-    dialog.componentInstance.onProjectAdded.subscribe(() => {
+    dialog.afterClosed().subscribe(() => {
       this.getAllProjects();
-      dialog.close();
     });
-    dialog.afterClosed().subscribe(() => { });
   }
 
   private fillStatus(projects: Project[]) {

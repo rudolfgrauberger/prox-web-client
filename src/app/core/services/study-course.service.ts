@@ -12,8 +12,8 @@ export class StudyCourseService extends RestService<StudyCourse> {
     super(StudyCourse, 'studyCourses', injector);
   }
 
-  findByAcademicDegree(academicDagree: string): Observable<StudyCourse[]> {
-    let options: any = {params: [{key: 'academicDegree', value: academicDagree}]};
+  findByAcademicDegree(academicDegree: string): Observable<StudyCourse[]> {
+    let options: any = {params: [{key: 'academicDegree', value: academicDegree}]};
     return this.search('findByAcademicDegree', options);
   }
 }

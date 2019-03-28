@@ -1,8 +1,8 @@
-import {Resource} from 'angular4-hal';
 import {Observable} from "rxjs";
 import {StudyCourse} from "./study-course.resource";
+import {CustomResource} from "./custom-resource";
 
-export class Module extends Resource {
+export class Module extends CustomResource {
   name: string;
   description: string;
   studyCourses: StudyCourse[] = [];
@@ -11,14 +11,13 @@ export class Module extends Resource {
     return this.getRelationArray(StudyCourse, 'studyCourses');
   }
 
-  getStudyCourseArray(): Promise<StudyCourse[]> {
+  getAndSetStudyCourseArray(): Promise<StudyCourse[]> {
     return new Promise<StudyCourse[]> ((resolve, reject) => {
       this.getStudyCourses().subscribe(
         tmp_studyCourses => this.studyCourses = tmp_studyCourses,
         () => reject(),
         () => resolve(this.studyCourses)
       );
-      }
-    );
+    });
   }
 }
