@@ -52,8 +52,8 @@ export class ProjectListComponent implements OnInit {
     );
   }
 
-  supervisorNameFilter(creatorName: string) {
-    this.projectService.findBySupervisorName(creatorName).subscribe(
+  supervisorNameFilter(supervisorName: string) {
+    this.projectService.findBySupervisorName(supervisorName).subscribe(
       projects => this.projects = projects
     );
   }
@@ -108,10 +108,10 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
-  filterProjectsByCreatorName(event: any) {
-    const creatorName = event.target.value;
-    if (creatorName) {
-      this.selectedSupervisorName = creatorName;
+  filterProjectsBySupervisorName(event: any) {
+    const supervisorName = event.target.value;
+    if (supervisorName) {
+      this.selectedSupervisorName = supervisorName;
       this.supervisorNameFilter(this.selectedSupervisorName);
     } else {
       this.selectedSupervisorName = null;
