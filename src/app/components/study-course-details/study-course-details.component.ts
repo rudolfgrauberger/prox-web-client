@@ -26,6 +26,7 @@ export class StudyCourseDetailsComponent implements OnInit {
         for (let tmpStudyCourse of studyCourses) {
           if (tmpStudyCourse.name === this.studyCourseName) {
             this.studyCourse = tmpStudyCourse;
+            this.studyCourse.getAndSetModuleArray().then();
           }
         }
       }

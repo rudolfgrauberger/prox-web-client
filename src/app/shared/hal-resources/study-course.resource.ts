@@ -21,25 +21,30 @@ export class StudyCourse extends CustomResource {
     return this.getRelationArray(Module, 'modules');
   }
 
-  getParentStudyCourse(): Observable<StudyCourse> {
-    return this.getRelation(StudyCourse, 'parentStudyCourse');
+  getAndSetModuleArray(): Promise<Module[]> {
+    return new Promise<Module[]> ((resolve, reject) => {
+      this.getModules().subscribe(
+        tmp_modules => this.modules = tmp_modules,
+        () => reject(),
+        () => {
+          this.modules.sort(
+            function (a, b) {
+              if (a.name < b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            }
+          );
+          resolve(this.modules);
+        }
+      );
+    });
   }
 
-  getModuleArray(): Module[] {
-    let modules: Module[] = [];
-    this.getModules().subscribe(
-      tmp_modules => modules = tmp_modules
-    );
-    return modules.sort(
-      function (a, b) {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      }
-    );
+  getParentStudyCourse(): Observable<StudyCourse> {
+    return this.getRelation(StudyCourse, 'parentStudyCourse');
   }
 }

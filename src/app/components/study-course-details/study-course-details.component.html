@@ -10,7 +10,7 @@
         + studyCourse.academicDegree.slice(1).toLowerCase()}}</mat-card-title>
         <mat-card-subtitle>Module</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content *ngFor="let module of studyCourse.getModuleArray()">
+      <mat-card-content *ngFor="let module of studyCourse.modules">
         <ul>
           <li>{{module.name}}</li>
         </ul>
