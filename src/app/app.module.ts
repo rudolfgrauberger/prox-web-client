@@ -49,7 +49,7 @@ import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {keycloakInitializer} from './keycloak/keycloak-init';
 import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {UserComponent } from './components/user/user.component';
-import {BearerInterceptor} from './keycloak/bearer.interceptor';
+import {BearerInterceptor} from './keycloak/BearerInterceptor';
 import {KeyCloakUser} from './keycloak/KeyCloakUser';
 
 @NgModule({
