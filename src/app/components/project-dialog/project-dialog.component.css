@@ -12,10 +12,6 @@
   font-size: 16px;
 }
 
-.mat-dialog-container {
-  width: 800px;
-}
-
 .project-dialog-form > * {
   width: 100%;
 }
