@@ -19,6 +19,6 @@ export class ProjectService extends RestService<Project> {
 
   findBySupervisorName(supervisorName: string): Observable<Project[]> {
     let options: any = {params: [{key: 'supervisorName', value: supervisorName}]};
-    return this.search('findBySupervisorNameContaining', options);
+    return this.search('findBySupervisorName_SupervisorNameContaining', options);
   }
 }
