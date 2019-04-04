@@ -98,7 +98,8 @@ export class ProjectDialogComponent implements OnInit {
 
   getStudyCourses() : Promise<StudyCourse[]> {
     return new Promise<StudyCourse[]> ((resolve, reject) => {
-      this.projectStudyCourseService.getAll()
+      let options: any = { notPaged: true };
+      this.projectStudyCourseService.getAll(options)
         .subscribe(tmpStudyCourses => this.studyCourses = tmpStudyCourses,
             error => reject(error),
           () => {
