@@ -1,8 +1,8 @@
 <div class="home">
-  <mat-card-header>
+  <div>
     <img class="logo-responsive" src="assets/images/logo.png">
     <img class="logo-responsive-icon" src="assets/images/logo-icon.png">
-  </mat-card-header>
+  </div>
   <div>
     <p class="lead">Die Projektbörse des Campus Gummersbach ist ein Projekt, das als Bestandteil
       der projektorientierten Lehre von Studierenden und Mitarbeitern der TH Köln für eben diese
@@ -11,25 +11,23 @@
       hat dieses Projekt über mehrere Lehrveranstaltungen im Informatik Master und Bachelor hinweg
       vorangetrieben.</p>
   </div>
-  <mat-card class="user-get-started-container">
-    <h2 class="user-role-heading">Student</h2>
-    <button mat-raised-button routerLink="/projects">Projekte suchen</button>
-    <ul class="available-functions-list">
-      <li>Studiengänge und dazugehörige Module einsehen</li>
-      <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten suchen und finden</li>
-    </ul>
-  </mat-card>
-  <mat-card class="user-get-started-container">
-    <h2 class="user-role-heading">Dozent</h2>
-    <button mat-raised-button (click)="editProject()">Projekte verwalten</button>
-    <ul class="available-functions-list">
-      <li>Studiengänge und dazugehörige Module einsehen</li>
-      <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten einstellen und bearbeiten</li>
-    </ul>
-  </mat-card>
-  <div>
-    <p>Weiterführende Informationen: <a
-      href="https://blogs.gm.fh-koeln.de/bente/forschung-entwicklung/projektboerse-des-campus-gummersbach/">Projekt-
-      und Themenbörse des Campus Gummersbach</a></p>
+
+  <div class="user-get-started-wrapper">
+    <mat-card class="user-get-started-container student-get-started-container">
+      <h2 class="user-role-heading">Student</h2>
+      <button mat-raised-button routerLink="/projects">Projekte suchen</button>
+      <ul class="available-functions-list">
+        <li>Studiengänge und dazugehörige Module einsehen</li>
+        <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten suchen und finden</li>
+      </ul>
+    </mat-card>
+    <mat-card class="user-get-started-container professor-get-started-container">
+      <h2 class="user-role-heading">Dozent</h2>
+      <button mat-raised-button (click)="editProject()">Projekte verwalten</button>
+      <ul class="available-functions-list">
+        <li>Studiengänge und dazugehörige Module einsehen</li>
+        <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten einstellen und bearbeiten</li>
+      </ul>
+    </mat-card>
   </div>
 </div>
