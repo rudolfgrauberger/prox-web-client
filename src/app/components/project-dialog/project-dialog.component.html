@@ -37,9 +37,9 @@
         </mat-error>
       </mat-form-field>
       <div>
-        <h1 id="module-caption-heading">Modulauswahl</h1>
+        <p id="module-caption">Modulauswahl</p>
         <div *ngFor="let studyCourse of studyCourses">
-          <h1 id="study-course-caption-heading">{{studyCourse.name}}</h1>
+          <p id="study-course-caption">{{studyCourse.name}}</p>
           <mat-chip-list>
             <mat-chip *ngFor="let module of studyCourse.modules"
                       [class.selected]="selectedModules.includes(module)"

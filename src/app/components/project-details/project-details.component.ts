@@ -26,10 +26,6 @@ export class ProjectDetailsComponent implements OnInit {
         for (let tmpProject of projects) {
           if (tmpProject.name === this.projectName) {
             this.project = tmpProject;
-
-            this.project.getModules().subscribe( // TODO test
-              modules => console.log(modules)
-            );
           }
         }
       }
