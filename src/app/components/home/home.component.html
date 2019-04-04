@@ -1,38 +1,38 @@
 <div class="home">
-  <mat-card>
-    <mat-card-header>
-      <img class="logo-responsive" src="assets/images/logo.png">
-      <img class="logo-responsive-icon" src="assets/images/logo-icon.png">
-    </mat-card-header>
-    <mat-card-content>
-      <p class="lead">Die Projektbörse des Campus Gummersbach ist ein Projekt, das als Bestandteil
-        der projektorientierten Lehre von Studierenden und Mitarbeitern der TH Köln für eben diese
-        Studierenden und Lehrenden aufgebaut wird. Das das <a
-          href="http://blogs.gm.fh-koeln.de/bente/archilab-uebersicht/archilab-team/">ArchiLab-Team</a>
-        hat dieses Projekt über mehrere Lehrveranstaltungen im Informatik Master und Bachelor hinweg
-        vorangetrieben.</p>
-      <p>In der Projektbörse sollen Studierende, Dozenten und externe Parteien (regionale und
-        überregionale Unternehmen, Partnerhochschulen) Projekte und Abschlussarbeiten einstellen,
-        suchen und finden können. Es bündelt damit Prozesse, die momentan sehr fragmentiert und
-        basierend auf persönlicher Vernetzung ablaufen:</p>
-      <ul>
-        <li>Studierende(r) sucht Pflichtprojekt, Praxissemester oder Abschlussarbeit (TH-Köln-intern
-          oder in einem Unternehmen), muss dafür Professor*innen und Unternehmen einzeln und gezielt
-          ansprechen
-        </li>
-        <li>Unternehmen hat interessante Themen für Lehr-/Forschungsprojekte und/oder
-          Abschlussarbeiten, weiß aber nicht, welche Professor*innen für eine Betreuung in Frage
-          kommen, und auch nicht, wie es die passenden Studierenden findet
-        </li>
-        <li>Professor*in oder Mitarbeiter*in hat interessante Projektthemen aus Forschung und
-          Entwicklung, hat aber nur eingeschränkt die Möglichkeit, bei Studierenden dafür Werbung zu
-          machen und/oder ein interessiertes Unternehmen als Partner zu gewinnen
-        </li>
-      </ul>
-      <br>
-      <p>Weiterführende Informationen: <a
-        href="https://blogs.gm.fh-koeln.de/bente/forschung-entwicklung/projektboerse-des-campus-gummersbach/">Projekt-
-        und Themenbörse des Campus Gummersbach</a></p>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-header>
+    <img class="logo-responsive" src="assets/images/logo.png">
+    <img class="logo-responsive-icon" src="assets/images/logo-icon.png">
+  </mat-card-header>
+  <div>
+    <p class="lead">Die Projektbörse des Campus Gummersbach ist ein Projekt, das als Bestandteil
+      der projektorientierten Lehre von Studierenden und Mitarbeitern der TH Köln für eben diese
+      Studierenden und Lehrenden aufgebaut wird. Das das <a
+        href="http://blogs.gm.fh-koeln.de/bente/archilab-uebersicht/archilab-team/">ArchiLab-Team</a>
+      hat dieses Projekt über mehrere Lehrveranstaltungen im Informatik Master und Bachelor hinweg
+      vorangetrieben.</p>
+  </div>
+  <div class="user-get-started-container">
+    <h2 class="user-role-heading">Dozent</h2>
+
+    <button mat-stroked-button routerLink="/projects">Projekte verwalten</button>
+    <ul class="available-functions-list">
+      <li>Studiengänge und dazugehörige Module einsehen</li>
+      <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten einstellen und bearbeiten</li>
+    </ul>
+  </div>
+
+  <div class="user-get-started-container">
+    <h2 class="user-role-heading">Student</h2>
+
+    <button mat-stroked-button routerLink="/projects">Projekte suchen</button>
+    <ul class="available-functions-list">
+      <li>Studiengänge und dazugehörige Module einsehen</li>
+      <li>Praxisprojekte, Bachelorarbeiten und Masterarbeiten suchen und finden</li>
+    </ul>
+  </div>
+  <div>
+    <p>Weiterführende Informationen: <a
+      href="https://blogs.gm.fh-koeln.de/bente/forschung-entwicklung/projektboerse-des-campus-gummersbach/">Projekt-
+      und Themenbörse des Campus Gummersbach</a></p>
+  </div>
 </div>
