@@ -65,13 +65,6 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  buildModuleIdentifier(studyCourse: StudyCourse, module: Module) : string {
-    let identifier : string = module.name;
-    identifier = identifier.concat(" {" + studyCourse.name + "}");
-
-    return identifier;
-  }
-
   setSelectedModules(modules: Module[]) {
     this.selectedModules = [];
     for (let module of modules) {

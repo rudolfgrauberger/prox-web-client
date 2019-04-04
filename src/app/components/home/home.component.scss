@@ -38,14 +38,14 @@ a {
   margin: 2.5%;
   padding: 0px 20px;
   border-style: ridge;
-  border-width: 3px;
+  border-width: 2px;
   float: left;
   border-color: #b41208;
   box-sizing: border-box;
 }
 
 .user-role-heading {
-  font-size: 30px;
+  font-size: 2em;
   font-weight: normal;
   color: #b41208;
   padding: 0 0 0 0;
@@ -59,7 +59,7 @@ ul {
 }
 
 ul li::before {
-  font-size: 15px;
+  font-size: 1em;
   content: "\25A0";
   color: #b41208;
   font-weight: bold;
@@ -68,12 +68,11 @@ ul li::before {
   margin-left: -1em;
 }
 
-.mat-stroked-button {
-  color: #9c1e75;
-  font-size: 24px;
+.mat-raised-button {
+  color: white;
+  font-size: 1.5em;
   width: 100%;
-  border-color: #9c1e75;
-  border-width: 0.2em;
+  background-color: #9c1e75;
 }
 
 .button-wrapper {
