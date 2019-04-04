@@ -1,8 +1,17 @@
 .mat-toolbar {
-  height: 40px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #393838;
-  opacity: 1;
+  background:none;
+}
+
+#div_top_hypers {
+  display:inline;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8em;
+}
+#ul_top_hypers li{
+  display: inline;
+  margin: 0 10px;
+}
+#ul_top_hypers li a{
+  color: #bbb;
 }
