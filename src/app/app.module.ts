@@ -51,6 +51,7 @@ import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {UserComponent } from './components/user/user.component';
 import {BearerInterceptor} from './keycloak/BearerInterceptor';
 import {KeyCloakUser} from './keycloak/KeyCloakUser';
+import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {KeyCloakUser} from './keycloak/KeyCloakUser';
     ProjectListComponent,
     ProjectDetailsComponent,
     ProjectDialogComponent,
-    UserComponent
+    UserComponent,
+    MatConfirmDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -106,7 +108,8 @@ import {KeyCloakUser} from './keycloak/KeyCloakUser';
     KeycloakAngularModule
   ],
   entryComponents: [
-    ProjectDialogComponent
+    ProjectDialogComponent,
+    MatConfirmDialogComponent
   ],
   providers: [
     {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService},
