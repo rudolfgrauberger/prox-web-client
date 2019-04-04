@@ -6,12 +6,12 @@ import {Project} from '../../shared/hal-resources/project.resource';
 import {Module} from '../../shared/hal-resources/module.resource';
 import {ModuleService} from '../../core/services/module.service';
 import {HalOptions, Resource} from "angular4-hal";
-import {ProjectModuleService} from "../../core/services/projectModule.service";
 import {UUID} from "angular2-uuid";
 import {isPrimitive} from "util";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
 import {StudyCourse} from "../../shared/hal-resources/study-course.resource";
 import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
+import {ProjectStudyCourseService} from "../../core/services/project-study-course.service";
 
 @Component({
   selector: 'app-project-dialog',
@@ -20,13 +20,13 @@ import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;
-  modules: Module[] = [];
+  studyCourses: StudyCourse[] = [];
   selectedModules: Module[] = [];
   hasSubmitted: boolean = false;
 
   constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
               private projectService: ProjectService,
-              private projectModuleService: ProjectModuleService,
+              private projectStudyCourseService: ProjectStudyCourseService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar,
               private user: KeyCloakUser,
@@ -41,10 +41,7 @@ export class ProjectDialogComponent implements OnInit {
       status: ['', [Validators.required]]
     });
 
-    this.getModules().then((modules) => {
-      for (let module of modules) {
-        module.getAndSetStudyCourseArray().then();
-      }
+    this.getStudyCourses().then((modules) => {
       this.fillInProjectValuesIfProjectExists();
     });
   }
@@ -68,19 +65,10 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  buildModuleIdentifier(module: Module) : string {
+  buildModuleIdentifier(studyCourse: StudyCourse, module: Module) : string {
     let identifier : string = module.name;
-    identifier = identifier.concat(" {");
+    identifier = identifier.concat(" {" + studyCourse.name + "}");
 
-    for (let i = 0; i < module.studyCourses.length; i++) {
-      if (i != 0) {
-        identifier = identifier.concat(", ");
-      }
-
-      identifier = identifier.concat(module.studyCourses[i].name);
-    }
-
-    identifier = identifier.concat("}");
     return identifier;
   }
 
@@ -95,9 +83,11 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   getModuleBySelfLink(selfLink: string) : Module {
-    for (let tmpModule of this.modules) {
-      if (tmpModule._links.self.href === selfLink)
-        return tmpModule;
+    for (let studyCourse of this.studyCourses) {
+      for (let tmpModule of studyCourse.modules) {
+        if (tmpModule._links.self.href === selfLink)
+          return tmpModule;
+      }
     }
     return null;
   }
@@ -113,13 +103,20 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  getModules() : Promise<Module[]> {
-    return new Promise<Module[]> ((resolve, reject) => {
-      const options: HalOptions = {params: [{key: "size", value: 50}]}
-      this.projectModuleService.getAll(options)
-        .subscribe(tmpModules => this.modules = tmpModules,
+  getStudyCourses() : Promise<StudyCourse[]> {
+    return new Promise<StudyCourse[]> ((resolve, reject) => {
+      this.projectStudyCourseService.getAll()
+        .subscribe(tmpStudyCourses => this.studyCourses = tmpStudyCourses,
             error => reject(error),
-          () => resolve(this.modules)
+          () => {
+            let modulePromises : Promise<Module[]>[] = [];
+
+            for (let studyCourse of this.studyCourses) {
+              modulePromises.push(studyCourse.getAndSetModuleArray());
+            }
+
+            Promise.all(modulePromises).then(() => resolve(this.studyCourses));
+          }
         );
       }
     );

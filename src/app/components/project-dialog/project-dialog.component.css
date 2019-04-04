@@ -1,6 +1,7 @@
 .project-dialog-form {
   display: flex;
   flex-direction: column;
+  min-width: 600px;
 }
 
 .mat-dialog-title {
@@ -73,3 +74,13 @@
   padding: 0 0 0 0;
   width: 100%;
 }
+
+#study-course-caption-heading {
+  font-size: 14px;
+  font-weight: normal;
+  color: #9c1e75;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+
+

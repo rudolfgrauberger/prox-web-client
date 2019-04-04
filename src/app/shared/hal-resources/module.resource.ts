@@ -5,19 +5,4 @@ import {CustomResource} from "./custom-resource";
 export class Module extends CustomResource {
   name: string;
   description: string;
-  studyCourses: StudyCourse[] = [];
-
-  getStudyCourses(): Observable<StudyCourse[]> {
-    return this.getRelationArray(StudyCourse, 'studyCourses');
-  }
-
-  getAndSetStudyCourseArray(): Promise<StudyCourse[]> {
-    return new Promise<StudyCourse[]> ((resolve, reject) => {
-      this.getStudyCourses().subscribe(
-        tmp_studyCourses => this.studyCourses = tmp_studyCourses,
-        () => reject(),
-        () => resolve(this.studyCourses)
-      );
-    });
-  }
 }
