@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
+import {KeycloakLoginOptions} from 'keycloak-js';
 
 @Injectable()
 export class KeyCloakUser {
@@ -83,11 +84,18 @@ export class KeyCloakUser {
   }
 
   public async login() {
-    await this.keycloakAngular.login();
+    await this.loginRedirect(window.location.href);
+  }
+
+  public async loginRedirect(uri: string) {
+    await this.keycloakAngular.login({
+      redirectUri: uri
+    });
     await this.Load();
   }
+
   public async logout() {
-    await this.keycloakAngular.logout(location.origin);
+    await this.keycloakAngular.logout(window.location.href);
     await this.Load();
   }
 }
