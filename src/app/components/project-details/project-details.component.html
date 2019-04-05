@@ -1,6 +1,6 @@
-<div class="project-detail">
-  <h1>{{projectName}}</h1>
-  <div *ngIf="project">
+<div class="project-detail" *ngIf="project">
+  <h1>{{project.name}}</h1>
+  <div>
     <mat-card>
       <mat-card-subtitle>Bezeichnung</mat-card-subtitle>
       <mat-card-title>{{project.name}}</mat-card-title>

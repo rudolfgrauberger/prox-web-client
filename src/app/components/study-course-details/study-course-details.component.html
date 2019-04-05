@@ -1,6 +1,6 @@
-<div class="module-detail">
-  <h1>{{studyCourseName}}</h1>
-  <div *ngIf="studyCourse">
+<div class="module-detail" *ngIf="studyCourse">
+  <h1>{{studyCourse.name}}</h1>
+  <div>
     <mat-card>
       <mat-card-header>
         <mat-card-subtitle>Studiengang</mat-card-subtitle>
