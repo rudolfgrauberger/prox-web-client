@@ -37,7 +37,7 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-button routerLink="/projects/{{project.name}}">
+      <button mat-button routerLink="/projects/{{project.id}}">
         Details
       </button>
       <button id="project-remove-button" *ngIf="hasPermission" class="no-hover" (click)="deleteProject(project)" mat-icon-button>

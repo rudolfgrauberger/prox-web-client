@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {CustomResource} from "./custom-resource";
 
 export class Project extends CustomResource {
+  id: UUID;
   name: string;
   description: string;
   status: string;
