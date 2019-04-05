@@ -47,8 +47,6 @@ export class ProjectListComponent implements OnInit {
         );
       }
     });
-
-
   }
 
   getAllProjects() {
@@ -141,6 +139,7 @@ export class ProjectListComponent implements OnInit {
   openProjectDialog(project: Project) {
     let dialog = this.dialog.open(ProjectDialogComponent, {
       autoFocus: false,
+      height: '80vh',
       data: project
     });
 
