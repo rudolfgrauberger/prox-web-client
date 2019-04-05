@@ -12,7 +12,7 @@
 }
 
 .logo-responsive {
-  max-width: 500px;
+  max-width: 400px;
   max-height: 84px;
 }
 
@@ -40,25 +40,33 @@ a {
 }
 
 .user-get-started-container {
-  width: 47%;
-  padding: 30px 20px;
-  float: left;
+  width: 45%;
+  padding: 20px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  float: inside;
   box-sizing: border-box;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .1), 0 2px 2px 0 rgba(0, 0, 0, .10), 0 1px 5px 0 rgba(0, 0, 0, .09);
   display: inline-block;
 }
 
 .student-get-started-container {
-  margin: 0.5% 2.5% 0.5% 0.5%;
+  vertical-align:top;
+  display: inline-block;
+  min-width: 260px;
+  margin: 2%;
 }
 
 .professor-get-started-container {
-  margin: 0.5% 0.5% 0.5% 2.5%;
+  vertical-align:top;
+  display: inline-block;
+  min-width: 260px;
+  margin: 2%;
 }
 
 .user-get-started-wrapper {
-  margin: 20px 0 0 0;
-  overflow: hidden;
+  overflow: auto;
+  display: flex;
 }
 
 .user-role-heading {
@@ -102,13 +110,27 @@ ul li::before {
   text-align: center;
 }
 
-@media (max-width: 640px) {
+
+@media (max-width: 650px) {
   .logo-responsive {
     display: none;
   }
 
   .logo-responsive-icon {
     display: block;
+  }
+
+  .user-get-started-wrapper {
+    display: inline;
+  }
+  .student-get-started-container {
+    display: block;
+    width: auto;
+  }
+
+  .professor-get-started-container {
+    display: block;
+    width: auto;
   }
 }
 

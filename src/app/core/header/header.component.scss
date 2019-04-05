@@ -35,7 +35,7 @@
 }
 
 .header-line {
-  background-color: #c81e0f;
+  background-color: var(--th-red);
   height: 3px;
 }
 
@@ -109,7 +109,7 @@
   outline: none;
 }
 
-@media (max-width: 330px) {
+@media (max-width: 450px) {
   .logo-responsive {
     display: none;
   }

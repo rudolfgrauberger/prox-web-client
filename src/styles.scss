@@ -1,6 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-drawer-container {
+  min-width: 350px;
   background-color: #FCFCFC;
 }
 
