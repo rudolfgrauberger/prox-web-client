@@ -5,11 +5,11 @@
 }
 
 .mat-dialog-title {
-  color: #b41208;
+  color: var(--th-red);
 }
 
 .mat-button {
-  color: #9c1e75;
+  color: var(--th-purple);
   font-size: 1em;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .selected {
-  background-color: #b41208;
+  background-color: var(--th-red);
   color: white;
 }
 
@@ -70,7 +70,7 @@
 #module-caption {
   font-size: 1em;
   font-weight: normal;
-  color: #b41208;
+  color: var(--th-red);
   padding: 0 0 0 0;
   width: 100%;
 }
@@ -78,7 +78,7 @@
 #study-course-caption {
   font-size: 0.8em;
   font-weight: normal;
-  color: #9c1e75;
+  color: var(--th-purple);
   padding: 0 0 0 0;
   width: 100%;
 }

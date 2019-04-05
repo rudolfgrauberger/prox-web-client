@@ -16,7 +16,7 @@ import {ProjectStudyCourseService} from "../../core/services/project-study-cours
 @Component({
   selector: 'app-project-dialog',
   templateUrl: './project-dialog.component.html',
-  styleUrls: ['./project-dialog.component.css']
+  styleUrls: ['./project-dialog.component.scss']
 })
 export class ProjectDialogComponent implements OnInit {
   projectFormControl: FormGroup;

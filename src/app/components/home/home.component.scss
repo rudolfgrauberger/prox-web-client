@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .home {
   max-width: 1400px;
   padding: 20px;
@@ -26,7 +28,7 @@
 }
 
 a {
-  color: #af1208;
+  color: var(--th-red);
 }
 
 .logo-responsive-icon {
@@ -62,7 +64,7 @@ a {
 .user-role-heading {
   font-size: 2em;
   font-weight: normal;
-  color: #b41208;
+  color: var(--th-red);
   padding: 0 0 0 0;
   width: 100%;
   text-align: center;
@@ -82,7 +84,7 @@ ul {
 ul li::before {
   font-size: 1em;
   content: "\25A0";
-  color: #b41208;
+  color: var(--th-red);
   font-weight: bold;
   display: inline-block;
   width: 1em;
@@ -93,7 +95,7 @@ ul li::before {
   color: white;
   font-size: 1.5em;
   width: 100%;
-  background-color: #9c1e75;
+  background-color: var(--th-purple);
 }
 
 .button-wrapper {
