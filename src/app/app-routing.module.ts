@@ -17,7 +17,7 @@ const routes: Routes = [
     component: ProjectListComponent,
   },
   {
-    path: 'projects/:name',
+    path: 'projects/:id',
     component: ProjectDetailsComponent,
   },
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
     component: StudyCourseListComponent,
   },
   {
-    path: 'study-courses/:name',
+    path: 'study-courses/:id',
     component: StudyCourseDetailsComponent,
   },
 ];
