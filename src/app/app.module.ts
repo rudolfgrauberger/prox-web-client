@@ -53,6 +53,7 @@ import {BearerInterceptor} from './keycloak/BearerInterceptor';
 import {KeyCloakUser} from './keycloak/KeyCloakUser';
 import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confirm-dialog.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ImpressumComponent } from './components/impressum/impressum.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ContactComponent } from './components/contact/contact.component';
     UserComponent,
     MatConfirmDialogComponent,
     ContactComponent,
+    ImpressumComponent,
   ],
   imports: [
     AppRoutingModule,
