@@ -139,7 +139,7 @@ export class ProjectListComponent implements OnInit {
   openProjectDialog(project: Project) {
     let dialog = this.dialog.open(ProjectDialogComponent, {
       autoFocus: false,
-      maxHeight: '80vh',
+      maxHeight: '85vh',
       data: project
     });
 

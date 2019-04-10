@@ -39,7 +39,7 @@
       <div>
         <p id="module-caption">Modulauswahl</p>
         <div *ngFor="let studyCourse of studyCourses">
-          <p id="study-course-caption">{{studyCourse.name}}</p>
+          <p id="study-course-caption">{{studyCourse.name}} ({{studyCourse.academicDegree}})</p>
           <mat-chip-list>
             <mat-chip *ngFor="let module of studyCourse.modules"
                       [class.selected]="selectedModules.includes(module)"
