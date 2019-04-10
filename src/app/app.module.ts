@@ -52,6 +52,7 @@ import {UserComponent } from './components/user/user.component';
 import {BearerInterceptor} from './keycloak/BearerInterceptor';
 import {KeyCloakUser} from './keycloak/KeyCloakUser';
 import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confirm-dialog.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confi
     ProjectDialogComponent,
     UserComponent,
     MatConfirmDialogComponent,
+    ContactComponent,
   ],
   imports: [
     AppRoutingModule,

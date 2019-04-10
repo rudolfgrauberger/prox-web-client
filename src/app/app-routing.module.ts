@@ -6,6 +6,7 @@ import {StudyCourseDetailsComponent} from './components/study-course-details/stu
 import {ProjectListComponent} from './components/project-list/project-list.component';
 import {ProjectDetailsComponent} from './components/project-details/project-details.component';
 import {AppAuthGuard} from './keycloak/AppAuthGuard';
+import {ContactComponent} from './components/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'study-courses/:id',
     component: StudyCourseDetailsComponent,
+  },
+  {
+    path: 'kontakt',
+    component: ContactComponent,
   },
 ];
 
