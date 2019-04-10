@@ -52,8 +52,10 @@ import {UserComponent } from './components/user/user.component';
 import {BearerInterceptor} from './keycloak/BearerInterceptor';
 import {KeyCloakUser} from './keycloak/KeyCloakUser';
 import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confirm-dialog.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ImpressumComponent } from './components/impressum/impressum.component';
+import { ContactComponent } from './components/legal-issues/contact/contact.component';
+import { ImpressumComponent } from './components/legal-issues/impressum/impressum.component';
+import { DataProtectionComponent } from './components/legal-issues/data-protection/data-protection.component';
+import { LiabilityNoticeComponent } from './components/legal-issues/liability-notice/liability-notice.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ImpressumComponent } from './components/impressum/impressum.component';
     MatConfirmDialogComponent,
     ContactComponent,
     ImpressumComponent,
+    DataProtectionComponent,
+    LiabilityNoticeComponent,
   ],
   imports: [
     AppRoutingModule,

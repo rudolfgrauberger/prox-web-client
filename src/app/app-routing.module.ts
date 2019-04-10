@@ -6,8 +6,10 @@ import {StudyCourseDetailsComponent} from './components/study-course-details/stu
 import {ProjectListComponent} from './components/project-list/project-list.component';
 import {ProjectDetailsComponent} from './components/project-details/project-details.component';
 import {AppAuthGuard} from './keycloak/AppAuthGuard';
-import {ContactComponent} from './components/contact/contact.component';
-import {ImpressumComponent} from './components/impressum/impressum.component';
+import {ContactComponent} from './components/legal-issues/contact/contact.component';
+import {ImpressumComponent} from './components/legal-issues/impressum/impressum.component';
+import {DataProtectionComponent} from './components/legal-issues/data-protection/data-protection.component';
+import {LiabilityNoticeComponent} from './components/legal-issues/liability-notice/liability-notice.component';
 
 const routes: Routes = [
   {
@@ -31,12 +33,20 @@ const routes: Routes = [
     component: StudyCourseDetailsComponent,
   },
   {
-    path: 'kontakt',
+    path: 'contact',
     component: ContactComponent,
   },
   {
     path: 'impressum',
     component: ImpressumComponent,
+  },
+  {
+    path: 'data-protection',
+    component: DataProtectionComponent,
+  },
+  {
+    path: 'liability-notice',
+    component: LiabilityNoticeComponent,
   },
 ];
 

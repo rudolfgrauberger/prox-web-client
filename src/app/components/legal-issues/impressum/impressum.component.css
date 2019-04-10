@@ -19,11 +19,6 @@ h1 {
   padding-top: 15px;
 }
 
-h4 {
-  font-family: 'Lato', sans-serif;
-  font-size: 1em;
-  color: var(--th-purple);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-top: 0px;
+p {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
 }
