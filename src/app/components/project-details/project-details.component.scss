@@ -25,9 +25,11 @@
 }
 
 .mat-card-content {
+  margin-top: 5px;
   margin-bottom: 0;
   margin-left: 16px;
   font-size: 1em;
+  white-space: pre-wrap;
 }
 
 .mat-card-actions {
