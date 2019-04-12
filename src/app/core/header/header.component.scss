@@ -62,10 +62,16 @@
   transform: translateX(-50%);
 }
 
+.header-main button {
+  display: block;
+  position: absolute;
+  left: 15px;
+  top: 15%;
+  height: 60%;
+}
+
 .mat-icon-button {
   color: gray;
-  margin-top: 4.5px;
-  margin-left: 15px;
 }
 
 .mat-icon-button.no-hover ::ng-deep .mat-button-focus-overlay {
@@ -83,7 +89,11 @@
 }
 
 .logo-responsive {
-  max-width: 110%;
+  height: 80%;
+  position: relative;
+  top: 10%;
+  margin: auto;
+  display: block;
   transition: all .2s ease-in-out;
 }
 
@@ -97,11 +107,12 @@
 }
 
 .logo-responsive-icon {
-  max-width: 16%;
+  height: 80%;
+  position: relative;
+  top: 10%;
+  margin: auto;
+  transition: all .2s ease-in-out;
   display: none;
-  transform: translateX(-50%);
-  left: 50%;
-  position: absolute;
 }
 
 .logo-responsive-icon:hover {
