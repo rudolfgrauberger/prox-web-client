@@ -22,9 +22,11 @@ export class StudyCourseDetailsComponent implements OnInit {
   }
 
   private getStudyCourse() {
-
     this.studyCourseService.get(this.studyCourseID).subscribe(
-      studyCourse => { this.studyCourse = studyCourse; }
+      studyCourse => {
+        this.studyCourse = studyCourse;
+        this.studyCourse.getAndSetModuleArray().then();
+      }
     );
   }
 }
