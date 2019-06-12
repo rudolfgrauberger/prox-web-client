@@ -28,7 +28,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
         }
       } catch (e) {
         console.log('isAccessAllowed error');
-    }
+      }
     });
   }
 }

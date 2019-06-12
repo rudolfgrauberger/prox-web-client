@@ -1,4 +1,4 @@
-@import "../../../styles";
+@import '../../../styles';
 
 .home {
   max-width: 1400px;
@@ -8,7 +8,7 @@
 
 .lead {
   padding: 10px 0px 0px 5px;
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .logo-responsive {
@@ -42,19 +42,20 @@
   margin-right: auto;
   float: inside;
   box-sizing: border-box;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .1), 0 2px 2px 0 rgba(0, 0, 0, .10), 0 1px 5px 0 rgba(0, 0, 0, .09);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+    0 1px 5px 0 rgba(0, 0, 0, 0.09);
   display: inline-block;
 }
 
 .student-get-started-container {
-  vertical-align:top;
+  vertical-align: top;
   display: inline-block;
   min-width: 260px;
   margin: 2%;
 }
 
 .professor-get-started-container {
-  vertical-align:top;
+  vertical-align: top;
   display: inline-block;
   min-width: 260px;
   margin: 2%;
@@ -87,7 +88,7 @@ ul {
 
 ul li::before {
   font-size: 1em;
-  content: "\25A0";
+  content: '\25A0';
   color: var(--th-red);
   font-weight: bold;
   display: inline-block;
@@ -105,7 +106,6 @@ ul li::before {
 .button-wrapper {
   text-align: center;
 }
-
 
 @media (max-width: 650px) {
   .logo-responsive {
@@ -137,4 +137,3 @@ ul li::before {
     padding-bottom: 20px;
   }
 }
-

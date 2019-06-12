@@ -5,45 +5,66 @@
       <mat-form-field>
         <mat-select (selectionChange)="filterProjectsByStatus($event)" placeholder="Status">
           <mat-option>Alle</mat-option>
-          <mat-option *ngFor="let status of allStatus" [value]="status">{{status.charAt(
-            0).toUpperCase()
-          + status.slice(1).toLowerCase()}}</mat-option>
+          <mat-option *ngFor="let status of allStatus" [value]="status">{{
+            status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input (keyup)="filterProjectsByName($event)" matInput placeholder="Suche">
+        <input (keyup)="filterProjectsByName($event)" matInput placeholder="Suche" />
       </mat-form-field>
       <mat-form-field>
-        <input (keyup)="filterProjectsBySupervisorName($event)" matInput placeholder="Betreuungsperson">
+        <input
+          (keyup)="filterProjectsBySupervisorName($event)"
+          matInput
+          placeholder="Betreuungsperson"
+        />
       </mat-form-field>
-      <button (click)="openProjectDialog(null)" *ngIf="hasPermission" class="no-hover" mat-icon-button>
-      <mat-icon>add</mat-icon>
-    </button>
+      <button
+        (click)="openProjectDialog(null)"
+        *ngIf="hasPermission"
+        class="no-hover"
+        mat-icon-button
+      >
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>
   <mat-card *ngFor="let project of projects">
     <mat-card-header>
       <mat-card-subtitle>Bezeichnung</mat-card-subtitle>
-      <mat-card-title>{{project.name}}</mat-card-title>
+      <mat-card-title>{{ project.name }}</mat-card-title>
       <mat-card-subtitle>Status</mat-card-subtitle>
       <mat-card-title>
         <div
-          [class.abgeschlossen]="project.status==='ABGESCHLOSSEN'"
-          [class.geplant]="project.status==='GEPLANT'"
+          [class.abgeschlossen]="project.status === 'ABGESCHLOSSEN'"
+          [class.geplant]="project.status === 'GEPLANT'"
           class="status"
         >
-        {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
+          {{ project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase() }}
         </div>
       </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-button routerLink="/projects/{{project.id}}">
+      <button mat-button routerLink="/projects/{{ project.id }}">
         Details
       </button>
-      <button id="project-remove-button" *ngIf="hasPermission" class="no-hover" (click)="deleteProject(project)" mat-icon-button>
+      <button
+        id="project-remove-button"
+        *ngIf="hasPermission"
+        class="no-hover"
+        (click)="deleteProject(project)"
+        mat-icon-button
+      >
         <mat-icon>delete_forever</mat-icon>
       </button>
-      <button id="project-edit-button" *ngIf="hasPermission" class="no-hover" (click)="openProjectDialog(project)" mat-icon-button>
+      <button
+        id="project-edit-button"
+        *ngIf="hasPermission"
+        class="no-hover"
+        (click)="openProjectDialog(project)"
+        mat-icon-button
+      >
         <mat-icon>edit</mat-icon>
       </button>
     </mat-card-actions>

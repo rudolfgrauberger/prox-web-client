@@ -1,26 +1,26 @@
 <div class="project-detail" *ngIf="project">
-  <h1>{{project.name}}</h1>
+  <h1>{{ project.name }}</h1>
   <div>
     <mat-card>
       <mat-card-subtitle>Bezeichnung</mat-card-subtitle>
-      <mat-card-title>{{project.name}}</mat-card-title>
+      <mat-card-title>{{ project.name }}</mat-card-title>
       <mat-card-subtitle>Status</mat-card-subtitle>
       <mat-card-title>
         <div
-          [class.abgeschlossen]="project.status==='ABGESCHLOSSEN'"
-          [class.geplant]="project.status==='GEPLANT'"
+          [class.abgeschlossen]="project.status === 'ABGESCHLOSSEN'"
+          [class.geplant]="project.status === 'GEPLANT'"
           class="status"
         >
-          {{project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase()}}
+          {{ project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase() }}
         </div>
       </mat-card-title>
       <mat-card-subtitle>Betreuungsperson</mat-card-subtitle>
       <mat-card-title>
-        {{project.supervisorName}}
+        {{ project.supervisorName }}
       </mat-card-title>
       <mat-card-subtitle>Beschreibung</mat-card-subtitle>
       <mat-card-content>
-        {{project.description}}
+        {{ project.description }}
       </mat-card-content>
     </mat-card>
   </div>

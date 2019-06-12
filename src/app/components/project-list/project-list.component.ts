@@ -1,11 +1,11 @@
 /* tslint:disable:one-line */
-import {Component, OnInit} from '@angular/core';
-import {ProjectService} from '../../core/services/project.service';
-import {Project} from '../../shared/hal-resources/project.resource';
-import {MatDialog, MatSelectChange} from '@angular/material';
-import {ProjectDialogComponent} from '../project-dialog/project-dialog.component';
-import {KeyCloakUser} from '../../keycloak/KeyCloakUser';
-import {MatConfirmDialogComponent} from '../../shared/mat-confirm-dialog/mat-confirm-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../core/services/project.service';
+import { Project } from '../../shared/hal-resources/project.resource';
+import { MatDialog, MatSelectChange } from '@angular/material';
+import { ProjectDialogComponent } from '../project-dialog/project-dialog.component';
+import { KeyCloakUser } from '../../keycloak/KeyCloakUser';
+import { MatConfirmDialogComponent } from '../../shared/mat-confirm-dialog/mat-confirm-dialog.component';
 
 @Component({
   selector: 'app-project-list',
@@ -21,8 +21,11 @@ export class ProjectListComponent implements OnInit {
   selectedSupervisorName: string;
   hasPermission = false;
 
-  constructor(private projectService: ProjectService, private user: KeyCloakUser,
-              public dialog: MatDialog) {
+  constructor(
+    private projectService: ProjectService,
+    private user: KeyCloakUser,
+    public dialog: MatDialog
+  ) {
     this.user.Load().then(() => {
       this.hasPermission = user.hasRole('Dozent');
     });
@@ -33,51 +36,46 @@ export class ProjectListComponent implements OnInit {
   }
 
   deleteProject(project: Project) {
-
     const dialogRef = this.dialog.open(MatConfirmDialogComponent, {
-      data: {title: 'Löschen', message: 'Projekt wirklich löschen?'}
+      data: { title: 'Löschen', message: 'Projekt wirklich löschen?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.projectService.delete(project).subscribe(
-          () => {},
-          error => console.log(error),
-          () => this.getAllProjects()
-        );
+        this.projectService
+          .delete(project)
+          .subscribe(() => {}, error => console.log(error), () => this.getAllProjects());
       }
     });
   }
 
   getAllProjects() {
-    this.projectService.getAll().subscribe(
-      projects => this.projects = projects,
-      error => console.log(error),
-      () => this.fillStatus(this.projects)
-    );
+    this.projectService
+      .getAll()
+      .subscribe(
+        projects => (this.projects = projects),
+        error => console.log(error),
+        () => this.fillStatus(this.projects)
+      );
   }
 
   statusFilter(status: string) {
-    this.projectService.findByStatus(status).subscribe(
-      projects => this.projects = projects
-    );
+    this.projectService.findByStatus(status).subscribe(projects => (this.projects = projects));
   }
 
   supervisorNameFilter(supervisorName: string) {
-    this.projectService.findBySupervisorName(supervisorName).subscribe(
-      projects => this.projects = projects
-    );
+    this.projectService
+      .findBySupervisorName(supervisorName)
+      .subscribe(projects => (this.projects = projects));
   }
 
   nameFilter(name: string) {
     if (this.selectedStatus) {
-      this.projectService.findByStatus(this.selectedStatus).subscribe(
-        projects => this.filterProjects(projects, name)
-      );
+      this.projectService
+        .findByStatus(this.selectedStatus)
+        .subscribe(projects => this.filterProjects(projects, name));
     } else {
-      this.projectService.getAll().subscribe(
-        projects => this.filterProjects(projects, name)
-      );
+      this.projectService.getAll().subscribe(projects => this.filterProjects(projects, name));
     }
   }
 
@@ -97,7 +95,7 @@ export class ProjectListComponent implements OnInit {
       } else if (this.selectedSupervisorName) {
         this.supervisorNameFilter(this.selectedSupervisorName);
       } else {
-          this.getAllProjects();
+        this.getAllProjects();
       }
     }
   }
@@ -129,7 +127,7 @@ export class ProjectListComponent implements OnInit {
       if (this.selectedStatus) {
         this.statusFilter(this.selectedStatus);
       } else if (this.selectedName) {
-          this.nameFilter(this.selectedName);
+        this.nameFilter(this.selectedName);
       } else {
         this.getAllProjects();
       }

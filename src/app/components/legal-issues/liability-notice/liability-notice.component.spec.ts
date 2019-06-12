@@ -8,9 +8,8 @@ describe('LiabilityNoticeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LiabilityNoticeComponent ]
-    })
-    .compileComponents();
+      declarations: [LiabilityNoticeComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

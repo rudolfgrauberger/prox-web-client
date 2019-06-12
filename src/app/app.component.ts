@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CacheHelper} from "angular4-hal";
+import { Component, OnInit } from '@angular/core';
+import { CacheHelper } from 'angular4-hal';
 
 @Component({
   selector: 'app-root',

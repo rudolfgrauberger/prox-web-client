@@ -1,17 +1,17 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProjectService} from '../../core/services/project.service';
-import {Project} from '../../shared/hal-resources/project.resource';
-import {Module} from '../../shared/hal-resources/module.resource';
-import {ModuleService} from '../../core/services/module.service';
-import {HalOptions, Resource} from "angular4-hal";
-import {UUID} from "angular2-uuid";
-import {isPrimitive} from "util";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
-import {StudyCourse} from "../../shared/hal-resources/study-course.resource";
-import {KeyCloakUser} from "../../keycloak/KeyCloakUser";
-import {ProjectStudyCourseService} from "../../core/services/project-study-course.service";
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectService } from '../../core/services/project.service';
+import { Project } from '../../shared/hal-resources/project.resource';
+import { Module } from '../../shared/hal-resources/module.resource';
+import { ModuleService } from '../../core/services/module.service';
+import { HalOptions, Resource } from 'angular4-hal';
+import { UUID } from 'angular2-uuid';
+import { isPrimitive } from 'util';
+import { el } from '@angular/platform-browser/testing/src/browser_util';
+import { StudyCourse } from '../../shared/hal-resources/study-course.resource';
+import { KeyCloakUser } from '../../keycloak/KeyCloakUser';
+import { ProjectStudyCourseService } from '../../core/services/project-study-course.service';
 
 @Component({
   selector: 'app-project-dialog',
@@ -24,14 +24,15 @@ export class ProjectDialogComponent implements OnInit {
   selectedModules: Module[] = [];
   hasSubmitted: boolean = false;
 
-  constructor(public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
-              private projectService: ProjectService,
-              private projectStudyCourseService: ProjectStudyCourseService,
-              private formBuilder: FormBuilder,
-              private snack: MatSnackBar,
-              private user: KeyCloakUser,
-              @Inject(MAT_DIALOG_DATA) public project: any) {
-  }
+  constructor(
+    public projectDialogRef: MatDialogRef<ProjectDialogComponent>,
+    private projectService: ProjectService,
+    private projectStudyCourseService: ProjectStudyCourseService,
+    private formBuilder: FormBuilder,
+    private snack: MatSnackBar,
+    private user: KeyCloakUser,
+    @Inject(MAT_DIALOG_DATA) public project: any
+  ) {}
 
   ngOnInit() {
     this.projectFormControl = this.formBuilder.group({
@@ -41,7 +42,7 @@ export class ProjectDialogComponent implements OnInit {
       status: ['', [Validators.required]]
     });
 
-    this.getStudyCourses().then((modules) => {
+    this.getStudyCourses().then(modules => {
       this.fillInProjectValuesIfProjectExists();
     });
   }
@@ -57,29 +58,26 @@ export class ProjectDialogComponent implements OnInit {
       this.projectFormControl.controls.supervisorName.setValue(this.project.supervisorName);
       this.projectFormControl.controls.status.setValue(this.project.status);
 
-      this.project.getModules().subscribe(
-        modules => {
-          this.setSelectedModules(modules);
-        }
-      );
+      this.project.getModules().subscribe(modules => {
+        this.setSelectedModules(modules);
+      });
     }
   }
 
   setSelectedModules(modules: Module[]) {
     this.selectedModules = [];
     for (let module of modules) {
-      let tmpModule : Module = this.getModuleBySelfLink(module._links.self.href);
+      let tmpModule: Module = this.getModuleBySelfLink(module._links.self.href);
       if (tmpModule) {
         this.selectedModules.push(tmpModule);
       }
     }
   }
 
-  getModuleBySelfLink(selfLink: string) : Module {
+  getModuleBySelfLink(selfLink: string): Module {
     for (let studyCourse of this.studyCourses) {
       for (let tmpModule of studyCourse.modules) {
-        if (tmpModule._links.self.href === selfLink)
-          return tmpModule;
+        if (tmpModule._links.self.href === selfLink) return tmpModule;
       }
     }
     return null;
@@ -96,27 +94,26 @@ export class ProjectDialogComponent implements OnInit {
     }
   }
 
-  getStudyCourses() : Promise<StudyCourse[]> {
-    return new Promise<StudyCourse[]> ((resolve, reject) => {
-      this.projectStudyCourseService.getAllSorted()
-        .subscribe(tmpStudyCourses => this.studyCourses = tmpStudyCourses,
-            error => reject(error),
-          () => {
-            let modulePromises : Promise<Module[]>[] = [];
+  getStudyCourses(): Promise<StudyCourse[]> {
+    return new Promise<StudyCourse[]>((resolve, reject) => {
+      this.projectStudyCourseService.getAllSorted().subscribe(
+        tmpStudyCourses => (this.studyCourses = tmpStudyCourses),
+        error => reject(error),
+        () => {
+          let modulePromises: Promise<Module[]>[] = [];
 
-            for (let studyCourse of this.studyCourses) {
-              modulePromises.push(studyCourse.getAndSetModuleArray());
-            }
-
-            Promise.all(modulePromises).then(() => resolve(this.studyCourses));
+          for (let studyCourse of this.studyCourses) {
+            modulePromises.push(studyCourse.getAndSetModuleArray());
           }
-        );
-      }
-    );
+
+          Promise.all(modulePromises).then(() => resolve(this.studyCourses));
+        }
+      );
+    });
   }
 
-  createProjectResource(project: Project) : Project {
-    let projectResource : Project;
+  createProjectResource(project: Project): Project {
+    let projectResource: Project;
     if (this.project) {
       projectResource = this.project;
     } else {
@@ -140,7 +137,7 @@ export class ProjectDialogComponent implements OnInit {
 
   private showSubmitInfo(message: string) {
     this.snack.open(message, null, {
-      duration: 2000,
+      duration: 2000
     });
   }
 
@@ -150,18 +147,20 @@ export class ProjectDialogComponent implements OnInit {
     // Create Project
     this.projectService.create(newProject).subscribe(
       () => {
-        newProject.setModules(this.selectedModules).then(() => {
-          this.showSubmitInfo("Projekt wurde erfolgreich erstellt");
-          this.closeDialog();
-        },
-        (error) => {
-          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
-          this.closeDialog();
-          console.log(error);
-        });
+        newProject.setModules(this.selectedModules).then(
+          () => {
+            this.showSubmitInfo('Projekt wurde erfolgreich erstellt');
+            this.closeDialog();
+          },
+          error => {
+            this.showSubmitInfo('Fehler beim Verknüpfen der Module');
+            this.closeDialog();
+            console.log(error);
+          }
+        );
       },
       error => {
-        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.showSubmitInfo('Fehler beim Bearbeiten der Anfrage');
         this.hasSubmitted = false;
         console.log(error);
       }
@@ -174,18 +173,20 @@ export class ProjectDialogComponent implements OnInit {
     // Update Project
     this.projectService.update(this.project).subscribe(
       () => {
-        this.project.setModules(this.selectedModules).then(() => {
-          this.showSubmitInfo("Projekt wurde erfolgreich bearbeitet");
-          this.closeDialog();
-        },
-        (error) => {
-          this.showSubmitInfo("Fehler beim Verknüpfen der Module");
-          this.closeDialog();
-          console.log(error);
-        });
+        this.project.setModules(this.selectedModules).then(
+          () => {
+            this.showSubmitInfo('Projekt wurde erfolgreich bearbeitet');
+            this.closeDialog();
+          },
+          error => {
+            this.showSubmitInfo('Fehler beim Verknüpfen der Module');
+            this.closeDialog();
+            console.log(error);
+          }
+        );
       },
       error => {
-        this.showSubmitInfo("Fehler beim Bearbeiten der Anfrage");
+        this.showSubmitInfo('Fehler beim Bearbeiten der Anfrage');
         this.hasSubmitted = false;
         console.log(error);
       }

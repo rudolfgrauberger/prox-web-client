@@ -2,9 +2,10 @@
 
 .mat-sidenav {
   width: 300px;
-  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, .2), 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12);
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12);
 }
-#content{
+#content {
   margin-top: 75px;
 }
 
@@ -16,7 +17,7 @@
   padding: 0 !important;
 }
 
-.th-logo{
+.th-logo {
   position: absolute;
   right: 25px;
   top: 20%;
@@ -30,7 +31,7 @@
   height: 100%;
   width: 100%;
   font-size: 16px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .sidebar-icon {
@@ -43,9 +44,10 @@
 }
 
 .header-main {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   height: 50px;
-  box-shadow: 0 1px 1px -5px rgba(0, 0, 0, .1), 0 1px 2px 1px rgba(0, 0, 0, .02), 0 1px 2px 1px rgba(0, 0, 0, .02);
+  box-shadow: 0 1px 1px -5px rgba(0, 0, 0, 0.1), 0 1px 2px 1px rgba(0, 0, 0, 0.02),
+    0 1px 2px 1px rgba(0, 0, 0, 0.02);
   border-bottom: solid;
   border-width: 1px;
   border-color: #d4d4d4;
@@ -94,7 +96,7 @@
   top: 10%;
   margin: auto;
   display: block;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .logo-responsive:hover {
@@ -111,7 +113,7 @@
   position: relative;
   top: 10%;
   margin: auto;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   display: none;
 }
 
@@ -146,8 +148,7 @@
   background-color: white;
   border-radius: 15%;
   padding: 8px;
-  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.5),
-  inset 0 2px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.25);
   color: #696969;
 }
 

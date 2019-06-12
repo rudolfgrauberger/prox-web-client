@@ -4,36 +4,49 @@
       <button (click)="sidenav.toggle()" class="no-hover in-sidebar" mat-icon-button>
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <img class="logo-sidebar" src="assets/images/logo-icon.png">
+      <img class="logo-sidebar" src="assets/images/logo-icon.png" />
       <mat-list>
         <app-user></app-user>
 
         <mat-list-item>
-          <button (click)="sidenav.toggle()" [routerLinkActiveOptions]="{exact:true}"
-                  class="sidebar-button"
-                  mat-button routerLink="" routerLinkActive="nav-activated">
+          <button
+            (click)="sidenav.toggle()"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sidebar-button"
+            mat-button
+            routerLink=""
+            routerLinkActive="nav-activated"
+          >
             <mat-icon class="sidebar-icon">home</mat-icon>
             Startseite
           </button>
         </mat-list-item>
 
         <mat-list-item>
-          <button (click)="sidenav.toggle()" class="sidebar-button"
-                  mat-button routerLink="projects" routerLinkActive="nav-activated">
+          <button
+            (click)="sidenav.toggle()"
+            class="sidebar-button"
+            mat-button
+            routerLink="projects"
+            routerLinkActive="nav-activated"
+          >
             <mat-icon class="sidebar-icon">layers</mat-icon>
             Projekte
           </button>
         </mat-list-item>
 
         <mat-list-item>
-          <button (click)="sidenav.toggle()" class="sidebar-button"
-                  mat-button routerLink="study-courses" routerLinkActive="nav-activated">
+          <button
+            (click)="sidenav.toggle()"
+            class="sidebar-button"
+            mat-button
+            routerLink="study-courses"
+            routerLinkActive="nav-activated"
+          >
             <mat-icon class="sidebar-icon">local_library</mat-icon>
             Studiengänge
           </button>
         </mat-list-item>
-
-
       </mat-list>
     </mat-sidenav>
 
@@ -44,11 +57,11 @@
           <mat-icon>menu</mat-icon>
         </button>
 
-        <img class="logo-responsive" routerLink="" src="assets/images/logo.png">
-        <img class="logo-responsive-icon" routerLink="" src="assets/images/logo-icon.png">
+        <img class="logo-responsive" routerLink="" src="assets/images/logo.png" />
+        <img class="logo-responsive-icon" routerLink="" src="assets/images/logo-icon.png" />
 
         <a href="https://www.th-koeln.de/">
-          <img src="assets/images/th-koeln.svg" alt="TH Köln" class="th-logo">
+          <img src="assets/images/th-koeln.svg" alt="TH Köln" class="th-logo" />
         </a>
       </div>
     </div>

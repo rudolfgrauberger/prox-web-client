@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {StudyCourse} from '../../shared/hal-resources/study-course.resource';
-import {StudyCourseService} from '../../core/services/study-course.service';
-import {ActivatedRoute} from '@angular/router';
-import {UUID} from 'angular2-uuid';
+import { Component, OnInit } from '@angular/core';
+import { StudyCourse } from '../../shared/hal-resources/study-course.resource';
+import { StudyCourseService } from '../../core/services/study-course.service';
+import { ActivatedRoute } from '@angular/router';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-module-detail',
@@ -14,7 +14,7 @@ export class StudyCourseDetailsComponent implements OnInit {
   studyCourseID: UUID;
 
   constructor(private studyCourseService: StudyCourseService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.studyCourseID = params.id);
+    this.route.params.subscribe(params => (this.studyCourseID = params.id));
   }
 
   ngOnInit() {
@@ -22,11 +22,9 @@ export class StudyCourseDetailsComponent implements OnInit {
   }
 
   private getStudyCourse() {
-    this.studyCourseService.get(this.studyCourseID).subscribe(
-      studyCourse => {
-        this.studyCourse = studyCourse;
-        this.studyCourse.getAndSetModuleArray().then();
-      }
-    );
+    this.studyCourseService.get(this.studyCourseID).subscribe(studyCourse => {
+      this.studyCourse = studyCourse;
+      this.studyCourse.getAndSetModuleArray().then();
+    });
   }
 }

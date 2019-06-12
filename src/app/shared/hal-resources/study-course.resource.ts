@@ -1,7 +1,7 @@
-import {Module} from './module.resource';
-import {Observable} from 'rxjs';
-import {CustomResource} from "./custom-resource";
-import {UUID} from 'angular2-uuid';
+import { Module } from './module.resource';
+import { Observable } from 'rxjs';
+import { CustomResource } from './custom-resource';
+import { UUID } from 'angular2-uuid';
 
 export class StudyCourse extends CustomResource {
   id: UUID;
@@ -23,22 +23,20 @@ export class StudyCourse extends CustomResource {
   }
 
   getAndSetModuleArray(): Promise<Module[]> {
-    return new Promise<Module[]> ((resolve, reject) => {
+    return new Promise<Module[]>((resolve, reject) => {
       this.getModules().subscribe(
-        tmp_modules => this.modules = tmp_modules,
+        tmp_modules => (this.modules = tmp_modules),
         () => reject(),
         () => {
-          this.modules.sort(
-            function (a, b) {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
+          this.modules.sort(function(a, b) {
+            if (a.name < b.name) {
+              return -1;
             }
-          );
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          });
           resolve(this.modules);
         }
       );

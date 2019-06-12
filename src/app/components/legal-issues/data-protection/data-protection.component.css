@@ -7,10 +7,10 @@ h1 {
 }
 
 p {
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.content-wrapper{
+.content-wrapper {
   margin-top: 75px;
   margin-left: auto;
   margin-right: auto;

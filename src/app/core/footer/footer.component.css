@@ -1,5 +1,5 @@
 .mat-toolbar {
-  background:none;
+  background: none;
   height: auto;
 }
 
@@ -9,15 +9,15 @@
   margin-right: auto;
   font-size: 0.8em;
 }
-#ul_top_hypers{
+#ul_top_hypers {
   padding: 0px;
 }
 
-#ul_top_hypers li{
+#ul_top_hypers li {
   display: inline;
   margin: 0 10px;
 }
-#ul_top_hypers li a{
+#ul_top_hypers li a {
   color: #bbb;
 }
 

@@ -1,4 +1,4 @@
-import {KeycloakConfig} from 'keycloak-angular';
+import { KeycloakConfig } from 'keycloak-angular';
 
 const keycloakConfig: KeycloakConfig = {
   url: 'https://login.coalbase.io/auth',
@@ -11,4 +11,3 @@ export const environment = {
   keycloak: keycloakConfig,
   url: 'https://gpdev.archi-lab.io/'
 };
-

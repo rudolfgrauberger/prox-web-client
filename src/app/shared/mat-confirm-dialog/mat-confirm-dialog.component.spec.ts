@@ -8,9 +8,8 @@ describe('MatConfirmDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatConfirmDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [MatConfirmDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 export interface DialogData {
   title: string;
@@ -12,10 +12,7 @@ export interface DialogData {
   styleUrls: ['./mat-confirm-dialog.component.css']
 })
 export class MatConfirmDialogComponent implements OnInit {
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

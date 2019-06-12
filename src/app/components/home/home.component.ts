@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {KeyCloakUser} from '../../keycloak/KeyCloakUser';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { KeyCloakUser } from '../../keycloak/KeyCloakUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +8,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  constructor(private user: KeyCloakUser, private router: Router) {}
 
-  constructor(private user: KeyCloakUser, private router: Router) {
-  }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 
   editProject() {
     if (this.user.isLoggedIn()) {
       this.router.navigate(['/', 'projects']);
     } else {
-       this.user.loginRedirect(window.location.href + 'projects');
+      this.user.loginRedirect(window.location.href + 'projects');
     }
   }
 }
