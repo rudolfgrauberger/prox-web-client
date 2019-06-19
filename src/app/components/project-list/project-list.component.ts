@@ -24,7 +24,7 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService, private user: KeyCloakUser,
               public dialog: MatDialog) {
     this.user.Load().then(() => {
-      this.hasPermission = user.hasRole('Dozent');
+      this.hasPermission = user.hasRole('professor');
     });
   }
 
@@ -41,7 +41,8 @@ export class ProjectListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.projectService.delete(project).subscribe(
-          () => {},
+          () => {
+          },
           error => console.log(error),
           () => this.getAllProjects()
         );
@@ -97,7 +98,7 @@ export class ProjectListComponent implements OnInit {
       } else if (this.selectedSupervisorName) {
         this.supervisorNameFilter(this.selectedSupervisorName);
       } else {
-          this.getAllProjects();
+        this.getAllProjects();
       }
     }
   }
@@ -129,7 +130,7 @@ export class ProjectListComponent implements OnInit {
       if (this.selectedStatus) {
         this.statusFilter(this.selectedStatus);
       } else if (this.selectedName) {
-          this.nameFilter(this.selectedName);
+        this.nameFilter(this.selectedName);
       } else {
         this.getAllProjects();
       }

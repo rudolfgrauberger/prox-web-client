@@ -4,11 +4,10 @@
 
 import {KeycloakConfig} from 'keycloak-angular';
 
-
 const keycloakConfig: KeycloakConfig = {
-  url: 'https://login.coalbase.io/auth',
-  realm: 'prox',
-  clientId: 'ptb-web-client'
+  url: 'https://login.archi-lab.io/auth',
+  realm: 'archilab',
+  clientId: 'prox-web-client'
 };
 
 export const environment = {
