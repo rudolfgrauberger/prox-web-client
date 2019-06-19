@@ -9,5 +9,5 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: true,
   keycloak: keycloakConfig,
-  url: 'https://gpdev.archi-lab.io/'
+  url: 'https://api.dev.prox.archi-lab.io'
 };
