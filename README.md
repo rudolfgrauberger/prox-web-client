@@ -1,13 +1,13 @@
-# PTB Web Client
+# Prox Web Client
 
-This web application acts as a frontend to the "Projekt- und Themenbörse (PTB)" of the TH Köln.
+This web application acts as the frontend to Prox.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
 ## Installation
 
 ```
-docker build -t ptb.archi-lab.io/web-client .
+docker build -t docker.nexus.archi-lab.io/archilab/prox-web-client .
 ```
 
 Builds a Docker image based on the source code and the dependencies in the `package.json` and `package-lock.json`.
@@ -18,10 +18,10 @@ Builds a Docker image based on the source code and the dependencies in the `pack
 docker-compose -f docker-compose-web-client.yml up
 ```
 
-Starts a Docker container based on the compose file and the image. A Docker network named `ptb` is required for the communication between services:
+Starts a Docker container based on the compose file and the image. A Docker network named `prox` is required for the communication between services:
 
 ```
-docker network create ptb
+docker network create prox
 ```
 
 ### Development server
@@ -48,16 +48,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Documentation
-
-You can view the full documentation under the following [GitHub Wiki](https://github.com/Archi-Lab/ptb-documentation/wiki).
-
-## Contributing
-
 ## About the Team
 
-This service is currently developed by the PTB Team composed of students from [TH Köln](https://www.th-koeln.de/):
+This service is currently developed by members of the ArchiLab staff:
 
 - Julian Lengelsen ([@jlengelsen](https://github.com/jlengelsen))
-- Mansoor Rahmati ([@ManSoorSour](https://github.com/ManSoorSour))
-- Jan Seidler ([@janseidler](https://github.com/janseidler))

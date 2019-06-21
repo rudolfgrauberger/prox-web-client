@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CacheHelper } from 'angular4-hal';
 
 @Component({
@@ -7,7 +7,7 @@ import { CacheHelper } from 'angular4-hal';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Projekt- und Themenbörse';
+  title = 'Prox';
 
   constructor() {
     CacheHelper.isActive = false;

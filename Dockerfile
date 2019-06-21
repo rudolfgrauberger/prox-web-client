@@ -40,7 +40,7 @@ RUN ng build --prod
 FROM nginx:1.14.2-alpine
 
 # copy artifact build from the 'build environment'
-COPY --from=builder /usr/src/app/dist/ptb-web-client /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/prox-web-client /usr/share/nginx/html
 
 # copy nginx conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf

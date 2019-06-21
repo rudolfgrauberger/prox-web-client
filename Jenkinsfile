@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        REPOSITORY = "ptb-gp-ss2019.archi-lab.io"
-        IMAGE = "web-client"
+        REPOSITORY = "docker.nexus.archi-lab.io/archilab"
+        IMAGE = "prox-web-client"
     }
     stages {
         stage("Build") {
@@ -35,10 +35,11 @@ pipeline {
             }
             steps {
                 sh "scp -P ${SERVERPORT} -v ${IMAGE}.tar ${SSHUSER}@${SERVERNAME}:~/"
-                sh "scp -P ${SERVERPORT} -v ${YMLFILENAME} ${SSHUSER}@${SERVERNAME}:/srv/projektboerse/"
+                sh "scp -P ${SERVERPORT} -v ${YMLFILENAME} ${SSHUSER}@${SERVERNAME}:/srv/prox/"
                 sh "ssh -p ${SERVERPORT} ${SSHUSER}@${SERVERNAME} " +
                         "'docker image load -i ${IMAGE}.tar; " +
-                        "docker-compose -p ptb -f /srv/projektboerse/${YMLFILENAME} up -d'"
+                        "docker network inspect prox &> /dev/null || docker network create prox; " +
+                        "docker-compose -p prox -f /srv/prox/${YMLFILENAME} up -d'"
             }
         }
     }

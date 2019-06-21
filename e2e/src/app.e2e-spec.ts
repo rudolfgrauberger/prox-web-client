@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to ptb-web-client!');
+    expect(page.getTitleText()).toEqual('Welcome to prox-web-client!');
   });
 
   afterEach(async () => {

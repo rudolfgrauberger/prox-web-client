@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ptb-web-client": {
+    "prox-web-client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ptb-web-client",
+            "outputPath": "dist/prox-web-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -56,18 +56,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ptb-web-client:build"
+            "browserTarget": "prox-web-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ptb-web-client:build:production"
+              "browserTarget": "prox-web-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ptb-web-client:build"
+            "browserTarget": "prox-web-client:build"
           }
         },
         "test": {
@@ -91,7 +91,7 @@
         }
       }
     },
-    "ptb-web-client-e2e": {
+    "prox-web-client-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -100,11 +100,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ptb-web-client:serve"
+            "devServerTarget": "prox-web-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ptb-web-client:serve:production"
+              "devServerTarget": "prox-web-client:serve:production"
             }
           }
         },
@@ -118,5 +118,5 @@
       }
     }
   },
-  "defaultProject": "ptb-web-client"
+  "defaultProject": "prox-web-client"
 }
