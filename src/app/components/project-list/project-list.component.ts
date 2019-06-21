@@ -27,7 +27,7 @@ export class ProjectListComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.user.Load().then(() => {
-      this.hasPermission = user.hasRole('Dozent');
+      this.hasPermission = user.hasRole('professor');
     });
   }
 
