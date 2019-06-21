@@ -1,9 +1,15 @@
 pipeline {
     agent any
+
     environment {
         REPOSITORY = "docker.nexus.archi-lab.io/archilab"
         IMAGE = "prox-web-client"
+        SERVERNAME = "fsygs15.inf.fh-koeln.de"
+        SERVERPORT = "22412"
+        SSHUSER = "jenkins"
+        YMLFILENAME = "docker-compose-web-client.yml"
     }
+
     stages {
         stage("Build") {
             steps {
@@ -11,28 +17,8 @@ pipeline {
                 sh "docker image save -o ${IMAGE}.tar ${REPOSITORY}/${IMAGE}"
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                echo "SonarQube..."
-            }
-        }
-        stage("Test") {
-            steps {
-                echo "Testing..."
-            }
-        }
-        stage("Code Quality Check") {
-            steps {
-                echo "Code Quality Check..."
-            }
-        }
+
         stage("Deploy") {
-            environment {
-                SERVERPORT = "22413"
-                YMLFILENAME = "docker-compose-web-client.yml"
-                SSHUSER = "jenkins"
-                SERVERNAME = "fsygs15.inf.fh-koeln.de"
-            }
             steps {
                 sh "scp -P ${SERVERPORT} -v ${IMAGE}.tar ${SSHUSER}@${SERVERNAME}:~/"
                 sh "scp -P ${SERVERPORT} -v ${YMLFILENAME} ${SSHUSER}@${SERVERNAME}:/srv/prox/"
