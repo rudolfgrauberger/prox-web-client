@@ -44,25 +44,29 @@
           {{ project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase() }}
         </div>
       </mat-card-title>
+      <mat-card-subtitle>Betreuungsperson</mat-card-subtitle>
+      <mat-card-title>
+        {{ project.supervisorName }}
+      </mat-card-title>
     </mat-card-header>
     <mat-card-actions>
       <button mat-button routerLink="/projects/{{ project.id }}">
         Details
       </button>
       <button
-        id="project-remove-button"
+        (click)="deleteProject(project)"
         *ngIf="hasPermission"
         class="no-hover"
-        (click)="deleteProject(project)"
+        id="project-remove-button"
         mat-icon-button
       >
         <mat-icon>delete_forever</mat-icon>
       </button>
       <button
-        id="project-edit-button"
+        (click)="openProjectDialog(project)"
         *ngIf="hasPermission"
         class="no-hover"
-        (click)="openProjectDialog(project)"
+        id="project-edit-button"
         mat-icon-button
       >
         <mat-icon>edit</mat-icon>
