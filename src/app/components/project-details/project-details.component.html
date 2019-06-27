@@ -1,4 +1,4 @@
-<div class="project-detail" *ngIf="project">
+<div *ngIf="project" class="project-detail">
   <h1>{{ project.name }}</h1>
   <div>
     <mat-card>
@@ -22,6 +22,28 @@
       <mat-card-content>
         {{ project.description }}
       </mat-card-content>
+      <mat-card-actions>
+        <div>
+          <button
+            (click)="deleteProject(project)"
+            *ngIf="hasPermission"
+            class="no-hover"
+            id="project-remove-button"
+            mat-icon-button
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+          <button
+            (click)="openProjectDialog(project)"
+            *ngIf="hasPermission"
+            class="no-hover"
+            id="project-edit-button"
+            mat-icon-button
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
