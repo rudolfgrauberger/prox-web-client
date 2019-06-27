@@ -13,5 +13,6 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   keycloak: keycloakConfig,
-  url: 'http://localhost:8081/'
+  url: 'https://api.dev.prox.archi-lab.io'
+  // url: 'http://localhost:8081/'
 };
