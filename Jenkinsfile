@@ -5,7 +5,7 @@ pipeline {
         REPOSITORY = "docker.nexus.archi-lab.io/archilab"
         IMAGE = "prox-web-client"
         SERVERNAME = "fsygs15.inf.fh-koeln.de"
-        SERVERPORT = "22412"
+        SERVERPORT = "22413"
         SSHUSER = "jenkins"
         YMLFILENAME = "docker-compose-web-client.yml"
     }
