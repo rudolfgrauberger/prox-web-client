@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UUID } from 'angular2-uuid';
+import { ActivatedRoute } from '@angular/router';
 
 export type ViewMode = 'editor' | 'preview';
 
@@ -9,7 +11,11 @@ export type ViewMode = 'editor' | 'preview';
 })
 export class ProposalEditorComponent implements OnInit {
   viewMode: ViewMode = 'editor';
-  constructor() {}
+  proposalID: UUID;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => (this.proposalID = params.id));
+  }
 
   ngOnInit() {}
 
