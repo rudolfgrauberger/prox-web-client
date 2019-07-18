@@ -10,6 +10,7 @@ import { ContactComponent } from './components/legal-issues/contact/contact.comp
 import { ImpressumComponent } from './components/legal-issues/impressum/impressum.component';
 import { DataProtectionComponent } from './components/legal-issues/data-protection/data-protection.component';
 import { LiabilityNoticeComponent } from './components/legal-issues/liability-notice/liability-notice.component';
+import { ProposalEditorComponent } from './components/proposal-editor/proposal-editor.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'liability-notice',
     component: LiabilityNoticeComponent
+  },
+  {
+    path: 'proposal/:id',
+    component: ProposalEditorComponent
   }
 ];
 

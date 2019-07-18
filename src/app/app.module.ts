@@ -56,6 +56,8 @@ import { ContactComponent } from './components/legal-issues/contact/contact.comp
 import { ImpressumComponent } from './components/legal-issues/impressum/impressum.component';
 import { DataProtectionComponent } from './components/legal-issues/data-protection/data-protection.component';
 import { LiabilityNoticeComponent } from './components/legal-issues/liability-notice/liability-notice.component';
+import { ProposalEditorComponent } from './components/proposal-editor/proposal-editor.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { LiabilityNoticeComponent } from './components/legal-issues/liability-no
     ContactComponent,
     ImpressumComponent,
     DataProtectionComponent,
-    LiabilityNoticeComponent
+    LiabilityNoticeComponent,
+    ProposalEditorComponent
   ],
   imports: [
     AppRoutingModule,
@@ -113,7 +116,8 @@ import { LiabilityNoticeComponent } from './components/legal-issues/liability-no
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    MarkdownModule.forRoot()
   ],
   entryComponents: [ProjectDialogComponent, MatConfirmDialogComponent],
   providers: [
