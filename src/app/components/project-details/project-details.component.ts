@@ -7,6 +7,8 @@ import { KeyCloakUser } from '../../keycloak/KeyCloakUser';
 import { MatConfirmDialogComponent } from '../../shared/mat-confirm-dialog/mat-confirm-dialog.component';
 import { ProjectDialogComponent } from '../project-dialog/project-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Proposal } from '../../shared/hal-resources/proposal-resource';
+import { ProposalService } from '../../core/services/proposal.service';
 
 @Component({
   selector: 'app-project-details',
@@ -18,8 +20,11 @@ export class ProjectDetailsComponent implements OnInit {
   projectID: UUID;
   hasPermission = false;
 
+  proposals: Proposal[];
+
   constructor(
     private projectService: ProjectService,
+    private proposalService: ProposalService,
     private route: ActivatedRoute,
     private router: Router,
     private user: KeyCloakUser,
@@ -35,6 +40,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getProject();
+    this.getProposals();
   }
 
   deleteProject(project: Project) {
@@ -65,5 +71,24 @@ export class ProjectDetailsComponent implements OnInit {
 
   private getProject() {
     this.projectService.get(this.projectID).subscribe(project => (this.project = project));
+  }
+
+  getProposals() {
+    this.proposalService
+      .findByProjectId(this.projectID.toString())
+      // .findByProjectId('774cab50-6d6e-40ed-8dd4-6630fd9b68ff')
+      .subscribe(proposals => (this.proposals = proposals));
+  }
+
+  createProposal() {
+    let proposalResource: Proposal = new Proposal();
+    proposalResource.content = 'Dies ist Beispieltext für das Exposé';
+    proposalResource.projectId = this.projectID;
+    proposalResource.supervisorId = this.project.creatorID;
+    proposalResource.studentId = this.user.getID();
+
+    this.proposalService
+      .create(proposalResource)
+      .subscribe(() => console.log('Erfolg'), error1 => console.log(error1));
   }
 }
