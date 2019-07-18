@@ -1,3 +1,23 @@
-<p>
-  proposal-editor works!
-</p>
+<div class="proposal-detail">
+  <h1>{{ project.name }} bearbeiten</h1>
+  <br />
+  <mat-card-subtitle title="{{ project.description }}">Beschreibung</mat-card-subtitle>
+  <mat-card>
+    <nav>
+      <button mat-button (click)="toggleViewMode('editor')">Editor</button>
+      <button mat-button (click)="toggleViewMode('preview')">Vorschau</button>
+    </nav>
+
+    <label *ngIf="showEditor">
+      <textarea type="text" [formControl]="proposalFormControl"></textarea>
+    </label>
+
+    <div class="evaluation" *ngIf="showPreview">
+      <markdown [data]="proposalFormControl.value"></markdown>
+    </div>
+
+    <div>
+      <button mat-button (click)="patchProposalContent()">Exposé speichern</button>
+    </div>
+  </mat-card>
+</div>
