@@ -25,10 +25,10 @@ node {
 
     stage('Deploy') {
         docker.withServer('tcp://10.10.10.41:2376', 'prox-prod-certs') {
-            def pom = readJSON file: 'pom.xml'
-            def image2 = pom.getArtifactId()
+            def pom = readJSON file: 'package.json'
+            def image2 = pom.version
 
-            //echo "\"${version}\""
+            echo "\"${image2}\""
 
             //docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
             //    sh "env IMAGE=${image} TAG=${tag} docker stack deploy --with-registry-auth -c src/docker/docker-compose.yml -c src/docker/docker-compose.prod.yml ${image}"
