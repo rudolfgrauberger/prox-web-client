@@ -2,11 +2,12 @@ node {
     def revision = env.BUILD_NUMBER
     def image = "docker.nexus.archi-lab.io/archilab/prox-web-client"
     def version = ""
+    def package
 
     stage('Build') {
 
       script {
-        def package = readJSON file: 'package.json'
+        package = readJSON file: 'package.json'
         version = package.version
       }
 
