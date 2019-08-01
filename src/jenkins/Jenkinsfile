@@ -6,16 +6,16 @@ node {
 
     stage('Build') {
 
-      script {
-        packageJSON = readJSON file: 'package.json'
-        version = packageJSON.version
-      }
+      //script {
+      //  packageJSON = readJSON file: 'package.json'
+      //  version = packageJSON.version
+      //}
 
         //git url: 'https://github.com/Archi-Lab/prox-web-client.git'
         //git branch: 'jenkins-migration'
 
-        //def package = readJSON file: 'package.json'
-        //package.version = package.version
+        def packageJSON = readJSON file: 'package.json'
+        version = packageJSON.version
 
         echo "\"${version}\""
 
