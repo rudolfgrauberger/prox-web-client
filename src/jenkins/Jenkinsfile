@@ -6,12 +6,12 @@ node {
 
     stage('Build') {
 
-      script {
+      /*script {
         def packageJSON = readJSON file: 'package.json'
         def version = packageJSON.version
         tag = "${version}-${revision}"
         def fullName = "${image}:${tag}"
-      }
+      }*/
 
         git url: 'https://github.com/Archi-Lab/prox-web-client.git'
         git branch: 'jenkins-migration'
@@ -19,6 +19,9 @@ node {
         sh "docker build -t ${fullName} -f ./src/docker/Dockerfile ."
 
         docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
+          def test = "adskjlassdkf"
+          echo "${test}"
+
           sh "docker push ${fullName}"
         }
     }
@@ -28,7 +31,7 @@ node {
             docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
                 echo "Tag: ${tag}"
 
-                sh "env IMAGE=${projectName} TAG=${tag} docker stack deploy --with-registry-auth -c src/docker/docker-compose.yml -c src/docker/docker-compose.prod.yml ${image}"
+                //sh "env IMAGE=${projectName} TAG=${tag} docker stack deploy --with-registry-auth -c src/docker/docker-compose.yml -c src/docker/docker-compose.prod.yml ${image}"
             }
         }
     }
