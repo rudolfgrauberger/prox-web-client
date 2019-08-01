@@ -6,8 +6,8 @@ node {
     stage('Build') {
         def package = readJSON file: 'package.json'
 
-        git url: 'https://github.com/Archi-Lab/prox-web-client.git'
-        git branch: 'jenkins-migration'
+        //git url: 'https://github.com/Archi-Lab/prox-web-client.git'
+        //git branch: 'jenkins-migration'
 
         //def package = readJSON file: 'package.json'
         //package.version = package.version
