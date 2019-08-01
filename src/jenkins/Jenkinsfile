@@ -4,7 +4,11 @@ node {
     def version = ""
 
     stage('Build') {
-      def package = readJSON file: 'package.json'
+
+      script {
+        def package = readJSON file: 'package.json'
+        version = package.version
+      }
 
         //git url: 'https://github.com/Archi-Lab/prox-web-client.git'
         //git branch: 'jenkins-migration'
@@ -12,9 +16,9 @@ node {
         //def package = readJSON file: 'package.json'
         //package.version = package.version
 
-        //echo "\"${version}\""
+        echo "\"${version}\""
 
-        //echo "\"${image}:${revision}\""
+        echo "\"${image}:${version}-${revision}\""
 
         sh "docker build -t ${image}:${revision} -f ./src/docker/Dockerfile ."
 
