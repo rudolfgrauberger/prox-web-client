@@ -1,32 +1,29 @@
-pipeline {
-    agent any
+node {
+    def revision = env.BUILD_NUMBER
+    def image = "docker.nexus.archi-lab.io/archilab/prox-web-client"
 
-    environment {
-        REPOSITORY = "docker.nexus.archi-lab.io/archilab"
-        IMAGE = "prox-web-client"
-        SERVERNAME = "fsygs15.inf.fh-koeln.de"
-        SERVERPORT = "22413"
-        SSHUSER = "jenkins"
-        YMLFILENAME = "docker-compose-web-client.yml"
+    stage('Build') {
+      git url: 'https://github.com/Archi-Lab/prox-web-client.git'
+      git branch: 'jenkins-migration'
+
+      echo "\"${image}:${revision}\""
+
+      sh "docker build -t ${image}:${revision} -f ./src/docker/Dockerfile ."
+
+      docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
+        sh "docker push ${image}:${revision}"
+      }
     }
 
-    stages {
-        stage("Build") {
-            steps {
-                sh "docker build -t ${REPOSITORY}/${IMAGE} ."
-                sh "docker image save -o ${IMAGE}.tar ${REPOSITORY}/${IMAGE}"
-            }
-        }
+    stage('Deploy') {
+        docker.withServer('tcp://10.10.10.41:2376', 'prox-prod-certs') {
+            def package = readJSON file: 'package.json'
+            def version = package.version
+            echo "\"${version}\""
 
-        stage("Deploy") {
-            steps {
-                sh "scp -P ${SERVERPORT} -v ${IMAGE}.tar ${SSHUSER}@${SERVERNAME}:~/"
-                sh "scp -P ${SERVERPORT} -v ${YMLFILENAME} ${SSHUSER}@${SERVERNAME}:/srv/prox/"
-                sh "ssh -p ${SERVERPORT} ${SSHUSER}@${SERVERNAME} " +
-                        "'docker image load -i ${IMAGE}.tar; " +
-                        "docker network inspect prox &> /dev/null || docker network create prox; " +
-                        "docker-compose -p prox -f /srv/prox/${YMLFILENAME} up -d'"
-            }
+            //docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
+            //    sh "env IMAGE=${image} TAG=${tag} docker stack deploy --with-registry-auth -c src/docker/docker-compose.yml -c src/docker/docker-compose.prod.yml ${image}"
+            //}
         }
     }
 }
