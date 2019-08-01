@@ -2,20 +2,20 @@ node {
     def revision = env.BUILD_NUMBER
     def image = "docker.nexus.archi-lab.io/archilab/prox-web-client"
     def version = ""
-    def packageJSON = ""
+    //def packageJSON = ""
 
     stage('Build') {
 
-      //script {
-      //  packageJSON = readJSON file: 'package.json'
-      //  version = packageJSON.version
-      //}
+      script {
+        def packageJSON = readJSON file: 'package.json'
+        version = packageJSON.version
+      }
 
         //git url: 'https://github.com/Archi-Lab/prox-web-client.git'
         //git branch: 'jenkins-migration'
 
-        def packageJSON = readJSON file: 'package.json'
-        version = packageJSON.version
+        //def packageJSON = readJSON file: 'package.json'
+        //version = packageJSON.version
 
         echo "\"${version}\""
 
